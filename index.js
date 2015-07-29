@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-accordion'
+  name: 'ember-cli-accordion',
+  isDevelopingAddon: function() {
+    return true;
+  }
 };
+
