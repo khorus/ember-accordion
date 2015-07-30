@@ -1,36 +1,34 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      {{#link-to 'home' class="navbar-brand"}}ember-cli-accordion{{/link-to}}
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav">
+        <li>
+          {{#link-to 'home'}}Home{{/link-to}}
+        </li>
+        <li>
+          <a href="https://github.com/khorus/ember-cli-accordion">Github</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<h3>this is a test</h3>
-{{outlet}}
+<div class="Application container">
+  <div class="row row-offcanvas row-offcanvas-left">
+    <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
+      <div class="list-group">
+        {{#link-to 'simple' class="list-group-item"}}Basic Example{{/link-to}}
+        {{#link-to 'nested' class="list-group-item"}}Nested Accordions{{/link-to}}
+        {{#link-to 'multiple-panels' class="list-group-item"}}Multiple Panels per Item{{/link-to}}
+        {{#link-to 'extending' class="list-group-item"}}Extended Components{{/link-to}}
+      </div>
+    </div>
 
-<div>
-  {{#accordion-list allowManyOpenPanels=true as |accordion selectedItems|}}
-    {{#accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="one" as |accordionItem openPanelName|}}
-
-      {{#accordion-toggle panelName="one" accordionItem=accordionItem openPanelName=openPanelName}}
-        One <i class="fa fa-angle-down"></i>
-      {{/accordion-toggle}}
-      {{#accordion-toggle panelName="two" accordionItem=accordionItem openPanelName=openPanelName}}
-        Two <i class="fa fa-angle-down"></i>
-      {{/accordion-toggle}}
-
-      {{#accordion-panel name="one" openPanelName=openPanelName}}
-        Thing One
-      {{/accordion-panel}}
-      {{#accordion-panel name="two" openPanelName=openPanelName}}
-        Thing Two
-      {{/accordion-panel}}
-
-    {{/accordion-item}}
-
-    <hr />
-    {{#accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="other" as |accordionItem openPanelName|}}
-      {{#accordion-toggle panelName="other" accordionItem=accordionItem openPanelName=openPanelName}}
-        One <i class="fa fa-angle-down"></i>
-      {{/accordion-toggle}}
-      {{#accordion-panel name="other" openPanelName=openPanelName}}
-        other thing
-      {{/accordion-panel}}
-    {{/accordion-item}}
-  {{/accordion-list}}
+    <div class="col-xs-12 col-sm-9">
+      {{outlet}}
+    </div>
+  </div>
 </div>

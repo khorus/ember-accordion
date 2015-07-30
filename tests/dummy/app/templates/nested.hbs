@@ -1,0 +1,30 @@
+<h1>Nested Accordion Example</h1>
+<p>TBD docs</p>
+
+{{#accordion-list as |parentAccordion|}}
+  {{#each items as |item|}}
+    {{#accordion-item parentAccordion=parentAccordion as |accordionItem|}}
+      {{#accordion-toggle accordionItem=accordionItem}}
+        {{item.name}}
+        <i class="fa fa-angle-down"></i>
+      {{/accordion-toggle}}
+      {{#accordion-panel accordionItem=accordionItem}}
+
+        {{#accordion-list as |nestedAccordion|}}
+          {{#each item.children as |child|}}
+            {{#accordion-item parentAccordion=nestedAccordion as |nestedAccordionItem|}}
+              {{#accordion-toggle accordionItem=nestedAccordionItem}}
+                {{child.name}}
+                <i class="fa fa-angle-down"></i>
+              {{/accordion-toggle}}
+              {{#accordion-panel accordionItem=nestedAccordionItem}}
+                {{child.value}}
+              {{/accordion-panel}}
+            {{/accordion-item}}
+          {{/each}}
+        {{/accordion-list}}
+
+      {{/accordion-panel}}
+    {{/accordion-item}}
+  {{/each}}
+{{/accordion-list}}

@@ -3,18 +3,19 @@ import layout from '../templates/components/accordion-item';
 
 export default Ember.Component.extend({
   layout: layout,
+  classNames: ["AccordionItem"],
 
   // Inputs
   parentAccordion: null,
-  selectedItems: [],
   defaultOpenPanelName: null,
 
   openPanelName: null,
   closePanelWhenNotSelected: function() {
-    if( !this.get('selectedItems').contains(this) ) {
+    if( !this.get('parentAccordion.selectedItems').contains(this) ) {
+      //console.log(this.toString() + "closing bc its not selected. parentAccordion " +this.get('parentAccordion').elementId);
       this.set('openPanelName', null);
     }
-  }.observes('selectedItems.[]'),
+  }.observes('parentAccordion.selectedItems.[]'),
 
   openDefaultPanel: function() {
     if( Ember.isPresent(this.get('defaultOpenPanelName')) ) {
@@ -22,8 +23,11 @@ export default Ember.Component.extend({
     }
   }.on('init'),
 
+  accordionItem: Ember.computed( function() { return this; }),
+
   actions: {
     togglePanel: function(panelName) {
+      //console.log(this.toString() + "togglePanel panelName: " + panelName);
       var openPanelName = this.get('openPanelName');
 
       if( Ember.isBlank(openPanelName) || Ember.isEqual(openPanelName, panelName) ) {

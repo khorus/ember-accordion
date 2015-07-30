@@ -6,8 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('home');
   this.route('simple');
-  this.route('multiple-pannels-per-item');
+  this.route('multiple-panels');
+  this.route('nested');
   this.route('extending');
 });
 

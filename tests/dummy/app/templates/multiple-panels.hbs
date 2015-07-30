@@ -1,0 +1,32 @@
+<h1>Multiple Panels per Item</h1>
+
+{{#accordion-list allowManyOpenPanels=true as |accordion|}}
+  {{#accordion-item parentAccordion=accordion defaultOpenPanelName="one" as |accordionItem|}}
+    accordion-item with two panels
+
+    {{#accordion-toggle panelName="one" accordionItem=accordionItem}}
+      One <i class="fa fa-angle-down"></i>
+    {{/accordion-toggle}}
+    {{#accordion-toggle panelName="two" accordionItem=accordionItem}}
+      Two <i class="fa fa-angle-down"></i>
+    {{/accordion-toggle}}
+
+    {{#accordion-panel name="one" accordionItem=accordionItem}}
+      Thing One
+    {{/accordion-panel}}
+    {{#accordion-panel name="two" accordionItem=accordionItem}}
+      Thing Two
+    {{/accordion-panel}}
+
+  {{/accordion-item}}
+
+  {{#accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="other" as |accordionItem|}}
+    accordion-item with one panel
+    {{#accordion-toggle accordionItem=accordionItem}}
+      One <i class="fa fa-angle-down"></i>
+    {{/accordion-toggle}}
+    {{#accordion-panel accordionItem=accordionItem}}
+      other thing
+    {{/accordion-panel}}
+  {{/accordion-item}}
+{{/accordion-list}}
