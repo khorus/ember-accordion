@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/x-accordion-item';
+import layout from '../templates/components/accordion-item';
 
 export default Ember.Component.extend({
   layout: layout,

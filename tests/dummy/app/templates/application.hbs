@@ -4,33 +4,33 @@
 {{outlet}}
 
 <div>
-  {{#x-accordion allowManyOpenPanels=true as |accordion selectedItems|}}
-    {{#x-accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="one" as |accordionItem openPanelName|}}
+  {{#accordion-list allowManyOpenPanels=true as |accordion selectedItems|}}
+    {{#accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="one" as |accordionItem openPanelName|}}
 
-      {{#x-accordion-toggle panelName="one" accordionItem=accordionItem openPanelName=openPanelName}}
+      {{#accordion-toggle panelName="one" accordionItem=accordionItem openPanelName=openPanelName}}
         One <i class="fa fa-angle-down"></i>
-      {{/x-accordion-toggle}}
-      {{#x-accordion-toggle panelName="two" accordionItem=accordionItem openPanelName=openPanelName}}
+      {{/accordion-toggle}}
+      {{#accordion-toggle panelName="two" accordionItem=accordionItem openPanelName=openPanelName}}
         Two <i class="fa fa-angle-down"></i>
-      {{/x-accordion-toggle}}
+      {{/accordion-toggle}}
 
-      {{#x-accordion-panel name="one" openPanelName=openPanelName}}
+      {{#accordion-panel name="one" openPanelName=openPanelName}}
         Thing One
-      {{/x-accordion-panel}}
-      {{#x-accordion-panel name="two" openPanelName=openPanelName}}
+      {{/accordion-panel}}
+      {{#accordion-panel name="two" openPanelName=openPanelName}}
         Thing Two
-      {{/x-accordion-panel}}
+      {{/accordion-panel}}
 
-    {{/x-accordion-item}}
+    {{/accordion-item}}
 
     <hr />
-    {{#x-accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="other" as |accordionItem openPanelName|}}
-      {{#x-accordion-toggle panelName="other" accordionItem=accordionItem openPanelName=openPanelName}}
+    {{#accordion-item parentAccordion=accordion selectedItems=selectedItems defaultOpenPanelName="other" as |accordionItem openPanelName|}}
+      {{#accordion-toggle panelName="other" accordionItem=accordionItem openPanelName=openPanelName}}
         One <i class="fa fa-angle-down"></i>
-      {{/x-accordion-toggle}}
-      {{#x-accordion-panel name="other" openPanelName=openPanelName}}
+      {{/accordion-toggle}}
+      {{#accordion-panel name="other" openPanelName=openPanelName}}
         other thing
-      {{/x-accordion-panel}}
-    {{/x-accordion-item}}
-  {{/x-accordion}}
+      {{/accordion-panel}}
+    {{/accordion-item}}
+  {{/accordion-list}}
 </div>

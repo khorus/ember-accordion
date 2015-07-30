@@ -1,1 +1,0 @@
-export { default } from 'ember-cli-accordion/components/x-accordion-item-nav';
