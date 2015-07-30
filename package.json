@@ -17,6 +17,9 @@
   },
   "author": "",
   "license": "MIT",
+  "comments": {
+    "one": "removed ember-disable-prototype-extensions because the made the dummy app not run"
+  },
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "1.13.1",
@@ -30,7 +33,6 @@
     "ember-cli-release": "0.2.3",
     "ember-cli-uglify": "^1.0.1",
     "ember-data": "1.13.5",
-    "ember-disable-prototype-extensions": "^1.0.0",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-try": "0.0.6"
@@ -39,6 +41,8 @@
     "ember-addon"
   ],
   "dependencies": {
+    "broccoli-merge-trees": "^0.2.1",
+    "broccoli-static-compiler": "^0.2.1",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-htmlbars": "0.7.9"
   },

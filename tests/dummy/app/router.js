@@ -6,6 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('simple');
+  this.route('multiple-pannels-per-item');
+  this.route('extending');
 });
 
 export default Router;
