@@ -1,6 +1,10 @@
-# Ember-cli-accordion
+# Ember CLI Accordion
 
 This README outlines the details of collaborating on this Ember addon.
+
+## Documentation
+
+TBD... for now see the code in the dummy app for use cases `tests/dummy`.
 
 ## Installation
 
