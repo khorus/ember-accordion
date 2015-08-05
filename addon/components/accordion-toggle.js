@@ -18,7 +18,11 @@ export default Ember.Component.extend({
 
   click: function() {
     //console.log(this.toString() + "click panelName: " + this.get('panelName'));
-    this.get('accordionItem').send('togglePanel', this.get('panelName'));
-    return false;
+    if(Ember.isPresent(this.get('acccordionItem'))) {
+      this.get('accordionItem').send('togglePanel', this.get('panelName'));
+      return false;
+    } else {
+      console.log("No accordion-item detected for " + this.toString() + ", not sending togglePanel action");
+    }
   }
 });
