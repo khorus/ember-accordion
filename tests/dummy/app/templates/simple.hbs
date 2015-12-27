@@ -2,6 +2,22 @@
 
 <h2>Simplest Usage</h2>
 <p>TBD docs</p>
+{{#code-block }}
+  \{{#accordion-list as |accordion|}}
+    \{{#each items as |item|}}
+      \{{#accordion-item parentAccordion=accordion as |accordionItem|}}
+        \{{#accordion-toggle accordionItem=accordionItem}}
+          \{{item.name}}
+          &lt;i class="fa fa-angle-down"&gt;&lt;/i&gt;
+        \{{/accordion-toggle}}
+        \{{#accordion-panel accordionItem=accordionItem}}
+          \{{item.color}}
+        \{{/accordion-panel}}
+      \{{/accordion-item}}
+    \{{/each}}
+  \{{/accordion-list}}
+{{/code-block}}
+
 {{#accordion-list as |accordion|}}
   {{#each items as |item|}}
     {{#accordion-item parentAccordion=accordion as |accordionItem|}}

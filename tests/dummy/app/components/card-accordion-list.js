@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import layout from '../templates/components/card-accordion-list';
 import AccordionList from 'ember-cli-accordion/components/accordion-list';
 
