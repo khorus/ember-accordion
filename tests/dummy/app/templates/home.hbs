@@ -15,48 +15,48 @@
   Base components are easily extendable.
 </p>
 <h2>Components</h2>
-{{#accordion-list as |accordion|}}
-  {{#accordion-item parentAccordion=accordion as |accordionItem|}}
-    {{#accordion-toggle accordionItem=accordionItem tagName="div"}}
+{{#accordion-list as |openItems toggleItem|}}
+  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
+    {{#accordion-toggle openPanel togglePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-list
     {{/accordion-toggle}}
-    {{#accordion-panel accordionItem=accordionItem}}
+    {{#accordion-panel openPanel}}
       <p>
         <code>accordion-list</code> is a block component which wraps a list
         of <code>accordion-item</code>
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
-  {{#accordion-item parentAccordion=accordion as |accordionItem|}}
-    {{#accordion-toggle accordionItem=accordionItem}}
+  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
+    {{#accordion-toggle openPanel togglePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-item
     {{/accordion-toggle}}
-    {{#accordion-panel accordionItem=accordionItem}}
+    {{#accordion-panel openPanel}}
       <p>
         <code>accordion-item</code> is a block component which wraps one or more
         <code>accordion-toggle</code> and a matching number of <code>accordion-panel</code>.
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
-  {{#accordion-item parentAccordion=accordion as |accordionItem|}}
-    {{#accordion-toggle accordionItem=accordionItem}}
+  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
+    {{#accordion-toggle openPanel togglePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-toggle
     {{/accordion-toggle}}
-    {{#accordion-panel accordionItem=accordionItem}}
+    {{#accordion-panel openPanel}}
       <p>
         toggle
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
-  {{#accordion-item parentAccordion=accordion as |accordionItem|}}
-    {{#accordion-toggle accordionItem=accordionItem}}
+  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
+    {{#accordion-toggle openPanel togglePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-panel
     {{/accordion-toggle}}
-    {{#accordion-panel accordionItem=accordionItem}}
+    {{#accordion-panel openPanel}}
       <p>
         panel
       </p>

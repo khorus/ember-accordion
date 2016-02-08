@@ -1,45 +1,51 @@
 import Ember from 'ember';
 import layout from '../templates/components/accordion-item';
 
-export default Ember.Component.extend({
+const AccordionItemComponent = Ember.Component.extend({
   layout: layout,
   classNames: ["AccordionItem"],
 
   // Inputs
-  parentAccordion: null,
-  defaultOpenPanelName: null,
+  defaultOpenPanel: null,
 
-  openPanelName: null,
-  closePanelWhenNotSelected: function() {
-    if( !this.get('parentAccordion.selectedItems').contains(this) ) {
-      //console.log(this.toString() + "closing bc its not selected. parentAccordion " +this.get('parentAccordion').elementId);
-      this.set('openPanelName', null);
+  openPanel: null,
+  closePanelWhenNotOpen: Ember.observer('openItems.[]', function() {
+    console.log(this.toString() + "closePanelWhenNotOpen " + this.get('openItems'));
+    if( !this.get('openItems').contains(this) ) {
+      console.log(this.toString() + "set openPanel to null");
+      this.set('openPanel', null);
     }
-  }.observes('parentAccordion.selectedItems.[]'),
+  }),
 
-  openDefaultPanel: function() {
-    if( Ember.isPresent(this.get('defaultOpenPanelName')) ) {
-      this.send('togglePanel', this.get('defaultOpenPanelName'));
+  openDefaultPanel: Ember.on('init', function() {
+    if( Ember.isPresent(this.get('defaultOpenPanel')) ) {
+      this.send('togglePanel', this.get('defaultOpenPanel'));
     }
-  }.on('init'),
+  }),
 
   accordionItem: Ember.computed( function() { return this; }),
 
   actions: {
-    togglePanel: function(panelName) {
-      //console.log(this.toString() + "togglePanel panelName: " + panelName);
-      var openPanelName = this.get('openPanelName');
+    togglePanel: function(panel) {
+      console.log(this.toString() + "togglePanel panel: " + panel);
+      var openPanel = this.get('openPanel');
 
-      if( Ember.isBlank(openPanelName) || Ember.isEqual(openPanelName, panelName) ) {
-        this.get('parentAccordion').send('toggleItem', this);
+      if( Ember.isBlank(openPanel) || Ember.isEqual(openPanel, panel) ) {
+        this.get('toggleItem')(this);
       }
 
-      // set/unset openPanelName
-      if(Ember.isEqual(openPanelName, panelName)) {
-        this.set('openPanelName', null);
+      // set/unset openPanel
+      if(Ember.isEqual(openPanel, panel)) {
+        this.set('openPanel', null);
       } else {
-        this.set('openPanelName', panelName);
+        this.set('openPanel', panel);
       }
     }
   }
 });
+
+AccordionItemComponent.reopenClass({
+  positionalParams: ['openItems', 'toggleItem']
+});
+
+export default AccordionItemComponent;

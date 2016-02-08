@@ -9,26 +9,26 @@ export default Ember.Component.extend({
   // setting this true will allow many open panels instead of just one
   allowManyOpenPanels: false,
 
-  // Super weird ember behavior here. If `selectedItems: Ember.A([])` then all instances of
-  // component:accordion-list would share the same selectedItems array.
-  selectedItems: null,
+  // Super weird ember behavior here. If `openItems: Ember.A([])` then all instances of
+  // component:accordion-list would share the same openItems array.
+  openItems: null,
   onInit: Ember.on('init', function() {
-    this.set('selectedItems', Ember.A([]));
+    this.set('openItems', Ember.A([]));
   }),
 
   accordion: Ember.computed( function() { return this; }),
 
   actions: {
     toggleItem: function(item) {
-      console.log(this.toString() + "toggleItem item " + item.elementId);
-      var selectedItems = this.get('selectedItems');
-      if(selectedItems.contains(item)) {
-        selectedItems.removeObject(item);
+      console.log(this.toString() + "toggleItem " + item.toString());
+      var openItems = this.get('openItems');
+      if(openItems.contains(item)) {
+        openItems.removeObject(item);
       } else {
         if( !this.get('allowManyOpenPanels') ) {
-          selectedItems.clear();
+          openItems.clear();
         }
-        selectedItems.addObject(item);
+        openItems.addObject(item);
       }
       return false;
     }
