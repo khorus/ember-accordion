@@ -1,51 +1,53 @@
 import Ember from 'ember';
-import layout from '../templates/components/accordion-item';
 
+// Required Positional Params
+// activeItems
+// itemClickHandler
+//
+// Optional Positional Params
 const AccordionItemComponent = Ember.Component.extend({
-  layout: layout,
   classNames: ["AccordionItem"],
 
-  // Inputs
-  defaultOpenPanel: null,
+  defaultActivePanel: null,
 
-  openPanel: null,
-  closePanelWhenNotOpen: Ember.observer('openItems.[]', function() {
-    console.log(this.toString() + "closePanelWhenNotOpen " + this.get('openItems'));
-    if( !this.get('openItems').contains(this) ) {
-      console.log(this.toString() + "set openPanel to null");
-      this.set('openPanel', null);
+  activePanel: null,
+  _closePanelWhenNotActive: Ember.observer('activeItems.[]', function() {
+    console.log(this.toString() + "closePanelWhenNotActive " + this.get('activeItems'));
+    if( !this.get('activeItems').contains(this) ) {
+      console.log(this.toString() + "set activePanel to null");
+      this.set('activePanel', null);
     }
   }),
 
-  openDefaultPanel: Ember.on('init', function() {
-    if( Ember.isPresent(this.get('defaultOpenPanel')) ) {
-      this.send('togglePanel', this.get('defaultOpenPanel'));
+  _activateDefaultPanel: Ember.on('init', function() {
+    if( Ember.isPresent(this.get('defaultActivePanel')) ) {
+      this.send('clickHandler', this.get('defaultActivePanel'));
     }
   }),
 
   accordionItem: Ember.computed( function() { return this; }),
 
   actions: {
-    togglePanel: function(panel) {
-      console.log(this.toString() + "togglePanel panel: " + panel);
-      var openPanel = this.get('openPanel');
+    clickHandler: function(panel) {
+      console.log(this.toString() + "clickHandler panel: " + panel);
+      var activePanel = this.get('activePanel');
 
-      if( Ember.isBlank(openPanel) || Ember.isEqual(openPanel, panel) ) {
-        this.get('toggleItem')(this);
+      if( Ember.isBlank(activePanel) || Ember.isEqual(activePanel, panel) ) {
+        this.get('listClickHandler')(this);
       }
 
-      // set/unset openPanel
-      if(Ember.isEqual(openPanel, panel)) {
-        this.set('openPanel', null);
+      // set/unset activePanel
+      if(Ember.isEqual(activePanel, panel)) {
+        this.set('activePanel', null);
       } else {
-        this.set('openPanel', panel);
+        this.set('activePanel', panel);
       }
     }
   }
 });
 
 AccordionItemComponent.reopenClass({
-  positionalParams: ['openItems', 'toggleItem']
+  positionalParams: ['activeItems', 'listClickHandler']
 });
 
 export default AccordionItemComponent;

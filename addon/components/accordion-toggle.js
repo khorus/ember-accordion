@@ -1,28 +1,33 @@
 import Ember from 'ember';
-import layout from '../templates/components/accordion-toggle';
 
+//
+// Required Positional Params
+// clickHandler
+//
+// Optional Positional Params
+// activePanel
+//
+// Optional Properties
+// panelName
 const AccordionToggleComponent = Ember.Component.extend({
-  layout: layout,
   classNames: ["AccordionToggle"],
-  classNameBindings: ['isOpen'],
+  classNameBindings: ['isActive'],
 
-  // Inputs
   panelName: 'panel-one',
 
-  // Computed Properties
-  isOpen: Ember.computed('panelName', 'openPanel', function() {
-    return Ember.isPresent(this.get('panelName')) && Ember.isEqual(this.get('panelName'), this.get('openPanel'));
+  isActive: Ember.computed('panelName', 'activePanel', function() {
+    return Ember.isEqual(this.get('panelName'), this.get('activePanel'));
   }),
 
   click: function() {
     console.log(this.toString() + "click panelName: " + this.get('panelName'));
-    this.get('togglePanel')(this.get('panelName'));
+    this.get('clickHandler')(this.get('panelName'));
     return false;
   }
 });
 
 AccordionToggleComponent.reopenClass({
-  positionalParams: ['openPanel', 'togglePanel']
+  positionalParams: ['clickHandler', 'activePanel']
 });
 
 export default AccordionToggleComponent;

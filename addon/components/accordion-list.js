@@ -1,34 +1,32 @@
 import Ember from 'ember';
-import layout from '../templates/components/accordion-list';
 
 export default Ember.Component.extend({
-  layout: layout,
   classNames: ["AccordionList"],
 
   // Inputs
-  // setting this true will allow many open panels instead of just one
-  allowManyOpenPanels: false,
+  // setting this true will allow many active items instead of just one
+  allowManyActiveItems: false,
 
-  // Super weird ember behavior here. If `openItems: Ember.A([])` then all instances of
-  // component:accordion-list would share the same openItems array.
-  openItems: null,
+  // Super weird ember behavior here. If `activeItems: Ember.A([])` then all instances of
+  // component:accordion-list would share the same activeItems array.
+  activeItems: null,
   onInit: Ember.on('init', function() {
-    this.set('openItems', Ember.A([]));
+    this.set('activeItems', Ember.A([]));
   }),
 
   accordion: Ember.computed( function() { return this; }),
 
   actions: {
-    toggleItem: function(item) {
-      console.log(this.toString() + "toggleItem " + item.toString());
-      var openItems = this.get('openItems');
-      if(openItems.contains(item)) {
-        openItems.removeObject(item);
+    clickHandler: function(item) {
+      console.log(this.toString() + "clickHandler " + item.toString());
+      var activeItems = this.get('activeItems');
+      if(activeItems.contains(item)) {
+        activeItems.removeObject(item);
       } else {
-        if( !this.get('allowManyOpenPanels') ) {
-          openItems.clear();
+        if( !this.get('allowManyActiveItems') ) {
+          activeItems.clear();
         }
-        openItems.addObject(item);
+        activeItems.addObject(item);
       }
       return false;
     }

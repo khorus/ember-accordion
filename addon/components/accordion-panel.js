@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import layout from '../templates/components/accordion-panel';
 
 const AccordionPanelComponent = Ember.Component.extend({
-  layout: layout,
   classNames: ["AccordionPanel"],
 
   // Inputs
@@ -15,7 +13,7 @@ const AccordionPanelComponent = Ember.Component.extend({
   })
 });
 
-AccordionPanelComponent.reopen({
+AccordionPanelComponent.reopenClass({
   positionalParams: ['openPanel']
 });
 

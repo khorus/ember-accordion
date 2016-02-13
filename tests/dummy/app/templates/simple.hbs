@@ -3,45 +3,59 @@
 <h2>Simplest Usage</h2>
 <p>TBD docs</p>
 {{#code-block }}
-  \{{#accordion-list as |accordion|}}
+  \{{! accordion-list controls which items should display their panel}}
+  \{{#accordion-list as |activeItems listClickHandler|}}
     \{{#each items as |item|}}
-      \{{#accordion-item parentAccordion=accordion as |accordionItem|}}
-        \{{#accordion-toggle accordionItem=accordionItem}}
+
+      \{{! accordion-item controls which panel should be displayed (an item can have many toggle/panel pairs) }}
+      \{{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+
+        \{{#accordion-toggle itemClickHandler}}
           \{{item.name}}
           &lt;i class="fa fa-angle-down"&gt;&lt;/i&gt;
         \{{/accordion-toggle}}
-        \{{#accordion-panel accordionItem=accordionItem}}
+
+        \{{#accordion-panel activePanel}}
           \{{item.color}}
         \{{/accordion-panel}}
+
       \{{/accordion-item}}
     \{{/each}}
   \{{/accordion-list}}
 {{/code-block}}
 
-{{#accordion-list as |accordion|}}
+{{#accordion-list as |activeItems listClickHandler|}}
   {{#each items as |item|}}
-    {{#accordion-item parentAccordion=accordion as |accordionItem|}}
-      {{#accordion-toggle accordionItem=accordionItem}}
+    {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+      {{#accordion-toggle itemClickHandler}}
         {{item.name}}
         <i class="fa fa-angle-down"></i>
       {{/accordion-toggle}}
-      {{#accordion-panel accordionItem=accordionItem}}
+      {{#accordion-panel activePanel}}
         {{item.color}}
       {{/accordion-panel}}
     {{/accordion-item}}
   {{/each}}
 {{/accordion-list}}
 
-<h2>Allow multiple panels to be open at once</h2>
-<p>TBD docs</p>
-{{#accordion-list allowManyOpenPanels=true as |accordion|}}
+<h2>Allow multiple active panels</h2>
+<p>
+To allow multiple items to be active simultaneously, set {{#code-inline}}allowManyActiveItems{{/code-inline}} on the {{#code-inline}}accordion-list{{/code-inline}}.
+</p>
+{{#code-block}}
+  \{{#accordion-list allowManyActiveItems=true as |activeItems listClickHandler|}}
+    ...
+  \{{/accordion-list}}
+{{/code-block}}
+
+{{#accordion-list allowManyActiveItems=true as |activeItems listClickHandler|}}
   {{#each items as |item|}}
-    {{#accordion-item parentAccordion=accordion as |accordionItem|}}
-      {{#accordion-toggle accordionItem=accordionItem}}
+    {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+      {{#accordion-toggle itemClickHandler}}
         {{item.name}}
         <i class="fa fa-angle-down"></i>
       {{/accordion-toggle}}
-      {{#accordion-panel accordionItem=accordionItem}}
+      {{#accordion-panel activePanel}}
         {{item.color}}
       {{/accordion-panel}}
     {{/accordion-item}}

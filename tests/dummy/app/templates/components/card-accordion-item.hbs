@@ -1,7 +1,7 @@
-{{#accordion-toggle accordionItem=accordionItem}}
+{{#accordion-toggle (action 'clickHandler')}}
   {{data.name}}
   <i class="fa fa-angle-down"></i>
 {{/accordion-toggle}}
-{{#accordion-panel accordionItem=accordionItem}}
+{{#accordion-panel activePanel}}
   {{data.color}}
 {{/accordion-panel}}

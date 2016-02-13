@@ -1,62 +1,61 @@
 <h1>Ember CLI Accordion</h1>
 <p>
   An ambitious accordion addon which provides components for
-  creating a list of collapsible content panels for presenting
-  information in a limited amount of space.
+  creating a list of items with collapsible content panels. It is
+  great for presenting information in a limited amount of space.
 </p>
 <p>
   Optional settings enable additional features such as:
   <ul>
-    <li>Allow multiple content panels to be open simultaneously</li>
+    <li>Allow multiple items to have an open panel simultaneously</li>
     <li>Setting a default open panel</li>
     <li>Nested accordions</li>
     <li>Multiple conent panels per item</li>
   </ul>
-  Base components are easily extendable.
 </p>
 <h2>Components</h2>
-{{#accordion-list as |openItems toggleItem|}}
-  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
-    {{#accordion-toggle openPanel togglePanel}}
+{{#accordion-list as |activeItems listClickHandler|}}
+  {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+    {{#accordion-toggle itemClickHandler activePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-list
     {{/accordion-toggle}}
-    {{#accordion-panel openPanel}}
+    {{#accordion-panel activePanel}}
       <p>
         <code>accordion-list</code> is a block component which wraps a list
         of <code>accordion-item</code>
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
-  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
-    {{#accordion-toggle openPanel togglePanel}}
+  {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+    {{#accordion-toggle itemClickHandler activePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-item
     {{/accordion-toggle}}
-    {{#accordion-panel openPanel}}
+    {{#accordion-panel activePanel}}
       <p>
         <code>accordion-item</code> is a block component which wraps one or more
         <code>accordion-toggle</code> and a matching number of <code>accordion-panel</code>.
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
-  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
-    {{#accordion-toggle openPanel togglePanel}}
+  {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+    {{#accordion-toggle itemClickHandler activePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-toggle
     {{/accordion-toggle}}
-    {{#accordion-panel openPanel}}
+    {{#accordion-panel activePanel}}
       <p>
         toggle
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
-  {{#accordion-item openItems toggleItem as |openPanel togglePanel|}}
-    {{#accordion-toggle openPanel togglePanel}}
+  {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+    {{#accordion-toggle itemClickHandler activePanel}}
       <i class="fa fa-angle-right"></i>
       accordion-panel
     {{/accordion-toggle}}
-    {{#accordion-panel openPanel}}
+    {{#accordion-panel activePanel}}
       <p>
         panel
       </p>
