@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-accordion",
-  "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.2.0",
+  "description": "An ambitious ember accordion component.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/khorus/ember-cli-accordion.git",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Chris Bonser",
   "license": "MIT",
   "comments": {
     "one": "removed ember-disable-prototype-extensions because the made the dummy app not run"
@@ -41,7 +41,8 @@
     "ember-curry-helpers": "git+https://github.com/flexyford/ember-curry-helpers.git#e01fa4f"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "accordion"
   ],
   "dependencies": {
     "broccoli-merge-trees": "^0.2.1",
