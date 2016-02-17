@@ -1,36 +1,34 @@
 import Ember from 'ember';
-import layout from '../templates/components/accordion-list';
+const { inject, computed } = Ember;
 
-export default Ember.Component.extend({
-  layout: layout,
+const AccordionListComponent = Ember.Component.extend({
+  accordion: inject.service('accordion'),
   classNames: ["AccordionList"],
 
-  // Inputs
-  // setting this true will allow many open panels instead of just one
-  allowManyOpenPanels: false,
+  allowManyActiveItems: false,
+  listId: computed(function() { return this.elementId; }),
 
-  // Super weird ember behavior here. If `selectedItems: Ember.A([])` then all instances of
-  // component:accordion-list would share the same selectedItems array.
-  selectedItems: null,
-  onInit: Ember.on('init', function() {
-    this.set('selectedItems', Ember.A([]));
-  }),
-
-  accordion: Ember.computed( function() { return this; }),
+  didInsertElement() {
+    this._super(...arguments);
+    Ember.run.scheduleOnce('afterRender', this, '_registerAccordion');
+  },
+  _registerAccordion() {
+    this.get('accordion').registerList({id: this.get('listId'), allowManyActiveItems: this.get('allowManyActiveItems')});
+  },
+  willDestroyElement() {
+    this._super(...arguments);
+    this.get('accordion').unregisterList(this.get('listId'));
+  },
 
   actions: {
-    toggleItem: function(item) {
-      console.log(this.toString() + "toggleItem item " + item.elementId);
-      var selectedItems = this.get('selectedItems');
-      if(selectedItems.contains(item)) {
-        selectedItems.removeObject(item);
-      } else {
-        if( !this.get('allowManyOpenPanels') ) {
-          selectedItems.clear();
-        }
-        selectedItems.addObject(item);
-      }
-      return false;
+    closeItem: function(itemId) {
+      this.get('accordion').closeItem(this.get('listId'), itemId);
     }
   }
 });
+
+AccordionListComponent.reopenClass({
+  positionalParams: ['items', 'toggleTemplate', 'panelTemplate']
+});
+
+export default AccordionListComponent;

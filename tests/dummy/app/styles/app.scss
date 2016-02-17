@@ -1,0 +1,43 @@
+@import 'addon/styles/addon';
+
+.Application {
+  padding-top: 60px;
+}
+
+.AccordionToggle {
+  padding: 0.5rem 1rem;
+  .fa-angle-right {
+    @include transition-property(transform);
+    @include transition-duration(150ms);
+    @include transition-timing-function(ease);
+  }
+  &.is-active .fa-angle-right {
+    @include transform(rotate( 90deg ));
+  }
+  &.is-active {
+    border-bottom: 1px solid lightgrey;
+  }
+}
+
+.AccordionItem {
+  border: 1px solid lightgrey;
+  margin-bottom: 0.5rem;
+}
+.AccordionPanel.is-active {
+  padding: 1rem;
+}
+
+.MultiplePanelsPage {
+  & .AccordionItem > h4 {
+    @include display(flex);
+    @include justify-content(space-between);
+    padding: 0.5rem;
+  }
+  & .AccordionItem-toggles {
+    @include display(flex);
+    margin-top: -8px;
+  }
+  .AccordionToggle.is-active {
+    border: none;
+  }
+}
