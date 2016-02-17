@@ -1,33 +1,21 @@
 import Ember from 'ember';
+import ElementActiveState from '../mixins/element-active-state';
 
-//
-// Required Positional Params
-// clickHandler
-//
-// Optional Positional Params
-// activePanel
-//
-// Optional Properties
-// panelName
-const AccordionToggleComponent = Ember.Component.extend({
+const AccordionToggleComponent = Ember.Component.extend(ElementActiveState, {
+  accordion: Ember.inject.service('accordion'),
   classNames: ["AccordionToggle"],
   classNameBindings: ['isActive'],
 
   panelName: 'panel-one',
 
-  isActive: Ember.computed('panelName', 'activePanel', function() {
-    return Ember.isEqual(this.get('panelName'), this.get('activePanel'));
-  }),
-
   click: function() {
-    console.log(this.toString() + "click panelName: " + this.get('panelName'));
-    this.get('clickHandler')(this.get('panelName'));
+    this.get('accordion').toggleClick(this.getProperties('listId', 'itemId', 'panelName'));
     return false;
   }
 });
 
 AccordionToggleComponent.reopenClass({
-  positionalParams: ['clickHandler', 'activePanel']
+  positionalParams: ['listId', 'itemId']
 });
 
 export default AccordionToggleComponent;

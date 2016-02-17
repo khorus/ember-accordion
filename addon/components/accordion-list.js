@@ -1,34 +1,29 @@
 import Ember from 'ember';
+const { inject, computed, on } = Ember;
 
-export default Ember.Component.extend({
+const AccordionListComponent = Ember.Component.extend({
+  accordion: inject.service('accordion'),
   classNames: ["AccordionList"],
 
-  // Inputs
-  // setting this true will allow many active items instead of just one
   allowManyActiveItems: false,
+  listId: computed(function() { return this.elementId; }),
 
-  // Super weird ember behavior here. If `activeItems: Ember.A([])` then all instances of
-  // component:accordion-list would share the same activeItems array.
-  activeItems: null,
-  onInit: Ember.on('init', function() {
-    this.set('activeItems', Ember.A([]));
-  }),
-
-  accordion: Ember.computed( function() { return this; }),
-
-  actions: {
-    clickHandler: function(item) {
-      console.log(this.toString() + "clickHandler " + item.toString());
-      var activeItems = this.get('activeItems');
-      if(activeItems.contains(item)) {
-        activeItems.removeObject(item);
-      } else {
-        if( !this.get('allowManyActiveItems') ) {
-          activeItems.clear();
-        }
-        activeItems.addObject(item);
-      }
-      return false;
-    }
+  didInsertElement() {
+    this._super(...arguments);
+    Ember.run.scheduleOnce('afterRender', this, '_registerAccordion');
+  },
+  _registerAccordion() {
+    this.get('accordion').registerList({id: this.get('listId'), allowManyActiveItems: this.get('allowManyActiveItems')});
+  },
+  willDestroyElement() {
+    this._super(...arguments);
+    this.get('accordion').unregisterList(this.get('listId'));
   }
+
 });
+
+AccordionListComponent.reopenClass({
+  positionalParams: ['items', 'toggleTemplate', 'panelTemplate']
+});
+
+export default AccordionListComponent;

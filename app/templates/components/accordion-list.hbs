@@ -1,1 +1,10 @@
-{{yield activeItems (action 'clickHandler')}}
+{{#if hasBlock}}
+  {{yield listId}}
+{{else}}
+  {{#each items as |item|}}
+    {{#accordion-item as |itemId|}}
+      {{accordion-toggle listId itemId layoutName=toggleTemplate item=item}}
+      {{accordion-panel listId itemId layoutName=panelTemplate item=item}}
+    {{/accordion-item}}
+  {{/each}}
+{{/if}}

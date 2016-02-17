@@ -1,20 +1,28 @@
 import Ember from 'ember';
+import ElementActiveState from '../mixins/element-active-state';
+const { on, computed, isEqual }  = Ember;
 
-const AccordionPanelComponent = Ember.Component.extend({
+const AccordionPanelComponent = Ember.Component.extend(ElementActiveState, {
+  accordion: Ember.inject.service('accordion'),
   classNames: ["AccordionPanel"],
 
   // Inputs
-  name: 'panel-one',
+  panelName: 'panel-one',
 
-  // Computed Properties
-  display: Ember.computed('name', 'openPanel', function() {
-    console.log(this.toString() + "openPanel: " + this.get('openPanel'));
-    return Ember.isEqual(this.get('name'), this.get('openPanel'));
-  })
+  openOnInit: false,
+  didInsertElement() {
+    this._super(...arguments);
+    Ember.run.next(this, '_activateDefaultPanel');
+  },
+  _activateDefaultPanel() {
+    if(this.get('openOnInit')) {
+      this.get('accordion').toggleClick(this.getProperties('listId', 'itemId', 'panelName'));
+    }
+  }
 });
 
 AccordionPanelComponent.reopenClass({
-  positionalParams: ['openPanel']
+  positionalParams: ['listId', 'itemId']
 });
 
 export default AccordionPanelComponent;

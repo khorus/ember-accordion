@@ -11,10 +11,10 @@
     @include transition-duration(150ms);
     @include transition-timing-function(ease);
   }
-  &.is-open .fa-angle-right {
+  &.is-active .fa-angle-right {
     @include transform(rotate( 90deg ));
   }
-  &.is-open {
+  &.is-active {
     border-bottom: 1px solid lightgrey;
   }
 }
