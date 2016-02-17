@@ -5,6 +5,7 @@ const { on, computed, isEqual }  = Ember;
 const AccordionPanelComponent = Ember.Component.extend(ElementActiveState, {
   accordion: Ember.inject.service('accordion'),
   classNames: ["AccordionPanel"],
+  classNameBindings: ['isActive'],
 
   // Inputs
   panelName: 'panel-one',

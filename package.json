@@ -37,7 +37,8 @@
     "ember-export-application-global": "^1.0.2",
     "ember-prism": "0.0.7",
     "ember-try": "0.0.6",
-    "liquid-fire": "0.21.3"
+    "liquid-fire": "0.21.3",
+    "ember-curry-helpers": "git+https://github.com/flexyford/ember-curry-helpers.git#e01fa4f"
   },
   "keywords": [
     "ember-addon"

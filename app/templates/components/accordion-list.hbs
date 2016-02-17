@@ -1,5 +1,5 @@
 {{#if hasBlock}}
-  {{yield listId}}
+  {{yield listId (action 'closeItem')}}
 {{else}}
   {{#each items as |item|}}
     {{#accordion-item as |itemId|}}

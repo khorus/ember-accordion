@@ -1,29 +1,17 @@
 <h1>Nested Accordion Example</h1>
 <p>TBD docs</p>
 
-{{#accordion-list as |activeItems listClickHandler|}}
+{{#accordion-list as |listId|}}
   {{#each items as |item|}}
-    {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
+    {{#accordion-item as |itemId|}}
 
-      {{#accordion-toggle itemClickHandler}}
+      {{#accordion-toggle listId itemId}}
         {{item.name}}
         <i class="fa fa-angle-down"></i>
       {{/accordion-toggle}}
 
-      {{#accordion-panel activePanel}}
-        {{#accordion-list as |nestedActiveItems nestedListClickHandler|}}
-          {{#each item.children as |child|}}
-            {{#accordion-item nestedActiveItems nestedListClickHandler as |nestedActivePanel nestedItemClickHandler|}}
-              {{#accordion-toggle nestedItemClickHandler}}
-                {{child.name}}
-                <i class="fa fa-angle-down"></i>
-              {{/accordion-toggle}}
-              {{#accordion-panel nestedActivePanel}}
-                {{child.value}}
-              {{/accordion-panel}}
-            {{/accordion-item}}
-          {{/each}}
-        {{/accordion-list}}
+      {{#accordion-panel listId itemId}}
+        {{accordion-list item.children 'accordion-elements/toggle' 'accordion-elements/panel'}}
       {{/accordion-panel}}
 
     {{/accordion-item}}

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { inject, computed, on } = Ember;
+const { inject, computed } = Ember;
 
 const AccordionListComponent = Ember.Component.extend({
   accordion: inject.service('accordion'),
@@ -18,8 +18,13 @@ const AccordionListComponent = Ember.Component.extend({
   willDestroyElement() {
     this._super(...arguments);
     this.get('accordion').unregisterList(this.get('listId'));
-  }
+  },
 
+  actions: {
+    closeItem: function(itemId) {
+      this.get('accordion').closeItem(this.get('listId'), itemId);
+    }
+  }
 });
 
 AccordionListComponent.reopenClass({

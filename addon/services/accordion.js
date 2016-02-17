@@ -52,5 +52,14 @@ export default Ember.Service.extend({
     return list;
   },
 
+  closeItem(listId, itemId) {
+    let list, activeItems, activeItem;
+
+    list = this.getList(listId);
+    activeItems = list.get('activeItems');
+    activeItem = list.getItem(itemId);
+    activeItems.removeObject(activeItem);
+  },
+
   lists: ( () => Ember.A([]))()
 });

@@ -4,12 +4,12 @@ The block form of {{#code-inline}}component:accordion-list{{/code-inline}} gives
 customization of how the component behaves.  It also introduces the other three components in the addon.
 </p>
 <h3>Block Form Components</h3>
-{{#accordion-list allowManyActiveItems=true as |listId|}}
+{{#accordion-list as |listId closeItem|}}
   {{#accordion-item as |itemId|}}
     {{#accordion-toggle listId itemId}}
       <i class="fa fa-angle-right"></i>component:accordion-item
     {{/accordion-toggle}}
-    {{#accordion-panel listId itemId}}
+    {{#accordion-panel listId itemId openOnInit=true}}
       <p>
       There should be one {{#code-inline}}component:accordion-item{{/code-inline}} per item in
       the accordion.  It wraps an {{#code-inline}}component:accordion-toggle{{/code-inline}} and
@@ -23,6 +23,7 @@ customization of how the component behaves.  It also introduces the other three 
           <li>{{#code-inline}}itemId{{/code-inline}} - consumed by the toggle and panel components</li>
         </ul>
       </p>
+      <button {{action closeItem itemId}}>close panel</button>
     {{/accordion-panel}}
   {{/accordion-item}}
 
@@ -51,6 +52,11 @@ customization of how the component behaves.  It also introduces the other three 
             {{#code-inline}}panelName{{/code-inline}} - (optional) String. A toggle and panel component are paired to each other
             by this property. It defaults to 'panel-one'.  This only needs to be set if an {{#code-inline}}accordion-item{{/code-inline}}
             has multiple toggle/panel pairs.  In that case, each pair must have a unique panelName.
+          </li>
+          <li>
+          {{#code-inline}}openOnInit{{/code-inline}} - (optional) Boolean. When true this panel will default to being open when
+          the component is initialized. Note if {{#code-inline}}accordion-list.allowManyActiveItems{{/code-inline}}
+          is false then the last panel initialized with this property set will be open and the others will be closed.
           </li>
         </ul>
         <h4>Block Params</h4>

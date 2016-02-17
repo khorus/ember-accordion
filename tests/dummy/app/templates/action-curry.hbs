@@ -1,0 +1,18 @@
+{{#if items}}
+  {{#accordion-list as |listId closeItem|}}
+    {{#each items as |item|}}
+      {{#accordion-item as |itemId|}}
+        {{#accordion-toggle listId itemId}}
+          <i class="fa fa-angle-right"></i>{{item.name}}
+        {{/accordion-toggle}}
+        {{#accordion-panel listId itemId}}
+          <p>{{item.value}}</p>
+          <p>Update name: {{input value=newName}}</p>
+          <button {{action (pipe (action 'updateName' item newName) (action closeItem itemId)) }}>Update Item</button>
+        {{/accordion-panel}}
+      {{/accordion-item}}
+    {{/each}}
+  {{/accordion-list}}
+{{else}}
+  <p>No items to display</p>
+{{/if}}

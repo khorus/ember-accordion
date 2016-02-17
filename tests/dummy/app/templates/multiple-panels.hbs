@@ -1,34 +1,55 @@
-<h1>Multiple Panels per Item</h1>
+<div class='MultiplePanelsPage'>
+  <h1>Multiple Panels per Item</h1>
 
-{{#accordion-list as |activeItems listClickHandler|}}
-  {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
-    accordion-item with two panels
+  {{#accordion-list as |listId|}}
+    {{#accordion-item as |itemId|}}
+      <h4>
+        accordion-item with two panels
+        <div class="AccordionItem-toggles">
+          {{#accordion-toggle listId itemId panelName="comments" as |isActive|}}
+            {{#if isActive}}
+              <i class="fa fa-comment"></i>
+            {{else}}
+              <i class="fa fa-comment-o"></i>
+            {{/if}}
+          {{/accordion-toggle}}
+          {{#accordion-toggle listId itemId panelName="info" as |isActive|}}
+            {{#if isActive}}
+              <i class="fa fa-question-circle"></i>
+            {{else}}
+              <i class="fa fa-question"></i>
+            {{/if}}
+          {{/accordion-toggle}}
+        </div>
+      </h4>
 
-    {{#accordion-toggle itemClickHandler panelName="one"}}
-      One <i class="fa fa-angle-down"></i>
-    {{/accordion-toggle}}
-    {{#accordion-toggle itemClickHandler panelName="two"}}
-      Two <i class="fa fa-angle-down"></i>
-    {{/accordion-toggle}}
+      {{#accordion-panel listId itemId panelName="comments"}}
+        Here are some comments... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elementum odio, sit amet feugiat risus. Integer venenatis eget quam a scelerisque. Nulla tincidunt tellus at maximus iaculis. Nulla a risus sed augue consectetur vehicula. Nunc lorem dolor, consectetur sed turpis eu, aliquam interdum velit. Aenean sit amet orci ut purus varius consequat. Morbi feugiat, ligula vel vehicula mattis, turpis nisl bibendum velit, vitae efficitur sapien nisi at ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
+      {{/accordion-panel}}
+      {{#accordion-panel listId itemId panelName="info"}}
+        Here is some info
+      {{/accordion-panel}}
 
-    {{#accordion-panel activePanel name="one"}}
-      Thing One
-    {{/accordion-panel}}
-    {{#accordion-panel activePanel name="two"}}
-      Thing Two
-    {{/accordion-panel}}
+    {{/accordion-item}}
 
-  {{/accordion-item}}
+    {{#accordion-item as |itemId|}}
+      <h4>
+        accordion-item with comments panel
+        <div class="AccordionItem-toggles">
+          {{#accordion-toggle listId itemId as |isActive|}}
+            {{#if isActive}}
+              <i class="fa fa-comment"></i>
+            {{else}}
+              <i class="fa fa-comment-o"></i>
+            {{/if}}
+          {{/accordion-toggle}}
+        </div>
+      </h4>
 
-  {{#accordion-item activeItems listClickHandler as |activePanel itemClickHandler|}}
-    accordion-item with one panel
+      {{#accordion-panel listId itemId}}
+        Here are comments about the other thing.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elementum odio, sit amet feugiat risus. Integer venenatis eget quam a scelerisque. Nulla tincidunt tellus at maximus iaculis. Nulla a risus sed augue consectetur vehicula. Nunc lorem dolor, consectetur sed turpis eu, aliquam interdum velit. Aenean sit amet orci ut purus varius consequat. Morbi feugiat, ligula vel vehicula mattis, turpis nisl bibendum velit, vitae efficitur sapien nisi at ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
+      {{/accordion-panel}}
 
-    {{#accordion-toggle itemClickHandler}}
-      One <i class="fa fa-angle-down"></i>
-    {{/accordion-toggle}}
-    {{#accordion-panel activePanel}}
-      other thing
-    {{/accordion-panel}}
-
-  {{/accordion-item}}
-{{/accordion-list}}
+    {{/accordion-item}}
+  {{/accordion-list}}
+</div>

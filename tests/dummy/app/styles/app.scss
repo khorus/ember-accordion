@@ -23,3 +23,21 @@
   border: 1px solid lightgrey;
   margin-bottom: 0.5rem;
 }
+.AccordionPanel.is-active {
+  padding: 1rem;
+}
+
+.MultiplePanelsPage {
+  & .AccordionItem > h4 {
+    @include display(flex);
+    @include justify-content(space-between);
+    padding: 0.5rem;
+  }
+  & .AccordionItem-toggles {
+    @include display(flex);
+    margin-top: -8px;
+  }
+  .AccordionToggle.is-active {
+    border: none;
+  }
+}
