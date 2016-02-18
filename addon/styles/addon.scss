@@ -1,5 +1,3 @@
 @import "../../../bower_components/bourbon/app/assets/stylesheets/bourbon";
 
-.AccordionToggle {
-  cursor: pointer;
-}
+.AccordionToggle:not(.is-disabled) { cursor: pointer; }

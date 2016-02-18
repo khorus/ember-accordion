@@ -46,6 +46,8 @@ customization of how the component behaves.  It also introduces the other three 
           <li>{{#code-inline}}listId{{/code-inline}} - (required) id of the parent {{#code-inline}}accordion-list{{/code-inline}}</li>
           <li>{{#code-inline}}itemId{{/code-inline}} - (required) id of the parent {{#code-inline}}accordion-item{{/code-inline}}</li>
         </ol>
+        Note: If either {{#code-inline}}listId{{/code-inline}} or {{#code-inline}}itemId{{/code-inline}} are null or undefined
+        then the toggle component will set 'is-disabled' class and won't respond to click events.
         <h4>Properties</h4>
         <ul>
           <li>
@@ -60,7 +62,11 @@ customization of how the component behaves.  It also introduces the other three 
           </li>
         </ul>
         <h4>Block Params</h4>
-        None!
+        <ul>
+          <li>
+            {{#code-inline}}isActive{{/code-inline}} - Boolean. Yields is active to the block.
+          </li>
+        </ul>
       </p>
     {{/accordion-panel}}
   {{/accordion-item}}
