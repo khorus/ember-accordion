@@ -1,1 +1,1 @@
-export { default } from 'ember-cli-accordion/components/accordion-list';
+export { default } from 'ember-accordion/components/accordion-list';

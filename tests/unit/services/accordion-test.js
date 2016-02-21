@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:accordion-list', 'Unit | Service | accordion list', {
+moduleFor('service:accordion', 'Unit | Service | accordion', {
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });

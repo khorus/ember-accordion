@@ -1,1 +1,1 @@
-export { default, initialize } from 'ember-cli-accordion/initializers/setup-accordion-services';
+export { default, initialize } from 'ember-accordion/initializers/setup-accordion-services';

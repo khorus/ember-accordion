@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import ElementActiveState from '../mixins/element-active-state';
-const { on, computed, isEqual }  = Ember;
+const { inject }  = Ember;
 
 const AccordionPanelComponent = Ember.Component.extend(ElementActiveState, {
-  accordion: Ember.inject.service('accordion'),
+  accordion: inject.service('accordion'),
   classNames: ["AccordionPanel"],
   classNameBindings: ['isActive'],
 
