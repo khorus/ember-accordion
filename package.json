@@ -54,7 +54,8 @@
     "ember-cli-htmlbars": "0.7.9"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://khorus.github.io/ember-accordion/"
   },
   "bugs": {
     "url": "https://github.com/khorus/ember-accordion/issues"
