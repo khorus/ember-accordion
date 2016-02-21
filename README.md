@@ -1,29 +1,20 @@
-# Ember CLI Accordion
+# Ember Accordion [![Circle CI](https://circleci.com/gh/khorus/ember-accordion.svg?style=svg)](https://circleci.com/gh/khorus/ember-accordion)
 
-This README outlines the details of collaborating on this Ember addon.
+A set of ember accordion components that makes 'fancy' accordions easy.
 
 ## Documentation
 
-TBD... for now see the code in the dummy app for use cases `tests/dummy`.
+Documentation can be found
+[here](http://khorus.github.io/ember-accordion)
+
+The ember-accordion documentation is an ember-cli app running from
+ember-accordion's [dummy test
+app](https://github.com/khorus/ember-accordion/tree/master/tests/dummy/app)
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+Install the ember-cli addon in your ember-cli project:
 
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```
+$ ember install ember-accordion
+```
