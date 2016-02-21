@@ -3,7 +3,6 @@
   "version": "0.3.0",
   "description": "An ember accordion component that makes 'fancy' accordions easy.",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -11,7 +10,10 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/khorus/ember-accordion.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khorus/ember-accordion.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -52,5 +54,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/khorus/ember-accordion/issues"
+  },
+  "homepage": "https://github.com/khorus/ember-accordion#readme",
+  "main": "index.js"
 }
