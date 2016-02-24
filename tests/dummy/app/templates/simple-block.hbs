@@ -4,7 +4,7 @@ The block form of {{#code-inline}}component:accordion-list{{/code-inline}} gives
 customization of how the component behaves.  It also introduces the other three components in the addon.
 </p>
 <h3>Block Form Components</h3>
-{{#accordion-list as |listId closeItem|}}
+{{#accordion-list as |listId|}}
   {{#accordion-item as |itemId|}}
     {{#accordion-toggle listId itemId}}
       <i class="fa fa-angle-right"></i>component:accordion-item
@@ -23,7 +23,6 @@ customization of how the component behaves.  It also introduces the other three 
           <li>{{#code-inline}}itemId{{/code-inline}} - consumed by the toggle and panel components</li>
         </ul>
       </p>
-      <button {{action closeItem itemId}}>close panel</button>
     {{/accordion-panel}}
   {{/accordion-item}}
 

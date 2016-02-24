@@ -2,7 +2,7 @@ import Ember from 'ember';
 const { inject, computed } = Ember;
 
 const AccordionListComponent = Ember.Component.extend({
-  accordion: inject.service('accordion'),
+  accordion: inject.service(),
   classNames: ["AccordionList"],
 
   allowManyActiveItems: false,

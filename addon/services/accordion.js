@@ -1,21 +1,11 @@
 import Ember from 'ember';
+import List from '../utils/list';
+import Item from '../utils/item';
 const {isEqual, isPresent} = Ember;
 
-const List = Ember.Object.extend({
-  id: null,
-  activeItems: Ember.computed( () => Ember.A([]) ),
-  allowManyActiveItems: false,
-  getItem(itemId) {
-    return this.get('activeItems').findBy('id', itemId);
-  }
-});
-
-const Item = Ember.Object.extend({
-  id: null,
-  activePanel: null
-});
-
 export default Ember.Service.extend({
+  lists: Ember.computed(() => Ember.A([])),
+
   registerList(listProperties) {
     this.get('lists').pushObject(List.create(listProperties));
   },
@@ -59,7 +49,5 @@ export default Ember.Service.extend({
     activeItems = list.get('activeItems');
     activeItem = list.getItem(itemId);
     activeItems.removeObject(activeItem);
-  },
-
-  lists: ( () => Ember.A([]))()
+  }
 });
