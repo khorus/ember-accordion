@@ -1,6 +1,6 @@
 {
   "name": "ember-accordion",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "An ember accordion component that makes 'fancy' accordions easy.",
   "directories": {
     "test": "tests"
