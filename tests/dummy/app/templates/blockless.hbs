@@ -15,13 +15,18 @@ In the blockless form it requires three parameters:
 {{#code-block language='markup'}}
 &lt;!-- [{name: 'thing 1', color: 'red'}, {name: 'thing 2', color: 'red too'}]  --&gt;
 \{{accordion-list items 'accordion-toggle' 'accordion-panel'}}{{/code-block}}
+
 {{#code-block language='markup'}}
 &lt;!-- accordion-toggle.hbs --&gt;
-&lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
-\{{item.name}}{{/code-block}}
+\{{#if isActive}}
+  &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
+  \{{item.name}}
+\{{/if}}{{/code-block}}
+
 {{#code-block language='markup'}}
 &lt;!-- accordion-panel.hbs --&gt;
 \{{item.color}}{{/code-block}}
+
 {{#code-block language='css'}}
 // The componet:accordion-toggle has the class is-active applied when its matching panel is open
 // so that you can style the toggle differently when it is active.

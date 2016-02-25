@@ -8,10 +8,10 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  app.import('bower_components/bootstrap/dist/css/bootstrap.css');
-  app.import('bower_components/fontawesome/css/font-awesome.min.css');
+  app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
+  app.import(app.bowerDirectory + '/fontawesome/css/font-awesome.min.css');
 
-  var extraAssets = pickFiles('bower_components/fontawesome', {
+  var extraAssets = pickFiles(app.bowerDirectory + '/fontawesome', {
       srcDir: '/',
       files: ['**/*.woff', '**/*.eot', '**/*.svg', '**/*.ttf'],
       destDir: '/'
