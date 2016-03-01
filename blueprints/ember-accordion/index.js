@@ -1,6 +1,5 @@
 module.exports = {
-  normalizeEntityName: function() {}
-  
+  normalizeEntityName: function() {},
   afterInstall: function() {
     return this.addAddonToProject('liquid-fire');
   }
