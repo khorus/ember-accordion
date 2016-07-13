@@ -1,3 +1,7 @@
 {{#liquid-if isActive}}
-  {{yield}}
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{item.value}}
+  {{/if}}
 {{/liquid-if}}
