@@ -1,10 +1,10 @@
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
+var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 var mergeTrees = require('broccoli-merge-trees');
-var pickFiles = require('broccoli-static-compiler');
+var pickFiles = require('broccoli-funnel');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
+  var app = new EmberAddon(defaults, {
     // Add options here
   });
 
@@ -13,7 +13,7 @@ module.exports = function(defaults) {
 
   var extraAssets = pickFiles(app.bowerDirectory + '/fontawesome', {
       srcDir: '/',
-      files: ['**/*.woff', '**/*.eot', '**/*.svg', '**/*.ttf'],
+      include: ['**/*.woff', '**/*.eot', '**/*.svg', '**/*.ttf'],
       destDir: '/'
   });
 

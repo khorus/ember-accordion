@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import AccordionService from 'ember-accordion/services/accordion';
@@ -7,8 +8,8 @@ const MockedAccordionService = AccordionService.extend({});
 moduleForComponent('accordion-list', 'Integration | Component | accordion list', {
   integration: true,
   beforeEach: function() {
-    this.container.register('service:accordionMock', MockedAccordionService);
-    this.container.injection('component', 'accordion', 'service:accordionMock');
+    Ember.getOwner(this).register('service:accordionMock', MockedAccordionService);
+    Ember.getOwner(this).inject('component', 'accordion', 'service:accordionMock');
   }
 });
 
@@ -22,7 +23,7 @@ test('blockless form', function(assert) {
 
   // had to mock this or service:accordion#lists is null when unregisteredList
   // is called
-  this.container.lookup('service:accordionMock').unregisterList = () => {
+  Ember.getOwner(this).lookup('service:accordionMock').unregisterList = () => {
     assert.ok(true, 'should call unregisterList');
   };
 
@@ -31,6 +32,7 @@ test('blockless form', function(assert) {
 
   // first click should open the panel
   this.$('.AccordionToggle')[0].click();
+
   assert.equal(this.$().find('.AccordionPanel').text().trim(), items[0].value, "panel should be active");
 
   // second click should close the panel
@@ -41,7 +43,7 @@ test('blockless form', function(assert) {
 test("block form", function(assert) {
   assert.expect(5);
 
-  this.container.lookup('service:accordionMock').unregisterList = () => {
+  Ember.getOwner(this).lookup('service:accordionMock').unregisterList = () => {
     assert.ok(true, 'should call unregisterList');
   };
 
