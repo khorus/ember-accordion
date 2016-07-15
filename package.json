@@ -15,7 +15,7 @@
     "url": "git+https://github.com/khorus/ember-accordion.git"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.15"
   },
   "author": "Chris Bonser",
   "license": "MIT",
