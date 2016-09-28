@@ -16,6 +16,8 @@ const AccordionPanelComponent = Ember.Component.extend(ElementActiveState, {
     Ember.run.next(this, '_activateDefaultPanel');
   },
   _activateDefaultPanel() {
+    if(this.isDestroying) { return; }
+
     if(this.get('openOnInit')) {
       this.get('accordion').toggleClick(this.getProperties('listId', 'itemId', 'panelName'));
     }
