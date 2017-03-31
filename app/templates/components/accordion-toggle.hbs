@@ -1,1 +1,5 @@
-{{yield isActive}}
+{{#if hasBlock}}
+  {{yield isActive}}
+{{else}}
+  {{item.name}}
+{{/if}}
