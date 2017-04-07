@@ -1,9 +1,16 @@
+machine:
+  node:
+    version: "stable"
 dependencies:
   pre:
     - npm install -g bower
+    - sudo apt-get update; sudo apt-get install -y --only-upgrade google-chrome-stable
   override:
     - npm i
     - bower i
+test:
+  override:
+    - npm test
 general:
   artifacts:
     - "coverage.json"
