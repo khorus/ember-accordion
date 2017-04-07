@@ -1,6 +1,6 @@
 machine:
   node:
-    version: "stable"
+    version: '6.10.2'
 dependencies:
   pre:
     - npm install -g bower

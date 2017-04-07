@@ -8,7 +8,7 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "ember test"
+    "test": "ember try:each"
   },
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-prism": "0.0.7",
-    "ember-try": "0.0.6",
+    "ember-try": "0.2.13",
     "liquid-fire": "0.21.3"
   },
   "keywords": [
