@@ -20,7 +20,6 @@ const AccordionListComponent = Ember.Component.extend({
 
   actions: {
     toggleItem(itemId, panelName) {
-      console.log("accordion-list#toggleItem");
       const activeItems = this.get('_activeItems');
       const targetItem = activeItems.findBy('id', itemId);
 
@@ -42,7 +41,6 @@ const AccordionListComponent = Ember.Component.extend({
     },
 
     closeItem(itemId) {
-      console.log("accordion-list#closeItem");
       let activeItems = this.get('_activeItems');
       const activeItem = activeItems.findBy('id', itemId);
       activeItems.removeObject(activeItem);

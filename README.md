@@ -23,7 +23,7 @@ Install the ember-cli addon in your ember-cli project:
 $ ember install ember-accordion
 ```
 
-## For Ember 2.0-2.3
+### For Ember 2.0-2.3
 
 Use version 0.3.6 but note that the blockess form of
 `component:ember-accordion` will not work.
@@ -37,3 +37,7 @@ $ ember install ember-accordion@0.3.6
 ```
 $ ember install ember-accordion@0.3.6
 ```
+
+## Upgrades
+
+For upgrade notes see [changelog](./CHANGELOG.md)
