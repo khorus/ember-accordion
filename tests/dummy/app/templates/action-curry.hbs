@@ -1,47 +1,48 @@
-<h1>Forms in Panels</h1>
+<h3>Forms in Panels</h3>
 <p>
-The block form of {{#code-inline}}component:accordion-list{{/code-inline}} yields a second
-parameter which is a action that will close an item.  Below is an example of how to use it.
-</p>
-<p>
-Note that to both update the item and close the item a helper from
-<a href="https://github.com/flexyford/ember-curry-helpers">ember-curry-helpers</a> is
-being leveraged.
+The yielded object from {{#code-inline}}accordion.item{{/code-inline}} provides
+a {{#code-inline}}close{{/code-inline}} property which is a action that will close an item.
 </p>
 
-{{#accordion-list as |listId closeItem|}}
+<p>
+The example below is a bit contrived but there are valid use cases where a user action in a panel should
+close the panel
+</p>
+
+{{#accordion-list as |accordion|}}
   {{#each items as |item|}}
-    {{#accordion-item as |itemId|}}
-      {{#accordion-toggle listId itemId}}
-        <i class="fa fa-angle-right"></i>{{item.name}}
-      {{/accordion-toggle}}
-      {{#accordion-panel listId itemId}}
+    {{#accordion.item as |accordionItem|}}
+      {{#accordionItem.toggle}}
+        <i class="fa fa-angle-right"></i>
+        {{item.name}}
+      {{/accordionItem.toggle}}
+      {{#accordionItem.panel}}
         <p>{{item.value}}</p>
         <p>Update name: {{input value=newName}}</p>
-        <button {{action (pipe (action 'updateName' item newName) (action closeItem itemId)) }}>Update Item</button>
-      {{/accordion-panel}}
-    {{/accordion-item}}
+        <button {{action (pipe (action 'updateName' item newName) (action accordionItem.close)) }}>Update Item</button>
+      {{/accordionItem.panel}}
+    {{/accordion.item}}
   {{/each}}
 {{/accordion-list}}
 
 {{#code-block }}
-\{{#accordion-list as |listId closeItem|}}
+\{{#accordion-list as |accordion|}}
   \{{#each items as |item|}}
-    \{{#accordion-item as |itemId|}}
+    \{{#accordion.item as |accordionItem|}}
 
-      \{{#accordion-toggle listId itemId}}
+      \{{#accordionItem.toggle}}
         &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
         \{{item.name}}
-      \{{/accordion-toggle}}
-      \{{#accordion-panel listId itemId}}
+      \{{/accordionItem.toggle}}
+      \{{#accordionItem.panel}}
         \{{item.color}}
         &lt;p&gt;{{item.value}}&lt;/p&gt;
         &lt;p&gt;Update name: \{{input value=newName}}&lt;/p&gt;
-        &lt;button \{{action (pipe (action 'updateName' item newName) (action closeItem itemId)) }}&gt;
+        &lt;button \{{action (pipe (action 'updateName' item newName) (action accordionItem.close) }}&gt;
           Update Item
         &lt;/button&gt;
-      \{{/accordion-panel}}
+      \{{/accordionItem.panel}}
 
-    \{{/accordion-item}}
+    \{{/accordion.item}}
   \{{/each}}
 \{{/accordion-list}}{{/code-block}}

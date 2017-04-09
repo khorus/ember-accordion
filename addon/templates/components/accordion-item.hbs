@@ -1,0 +1,7 @@
+{{yield
+  (hash
+    toggle=(component 'accordion-toggle' activePanel (action 'togglePanel'))
+    panel=(component 'accordion-panel' activePanel (action 'togglePanel'))
+    close=(action close itemId)
+  )
+}}
