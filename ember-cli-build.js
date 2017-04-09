@@ -6,7 +6,9 @@ var pickFiles = require('broccoli-static-compiler');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
-    // Add options here
+    'ember-composable-helpers': {
+      only: ['pipe']
+    }
   });
 
   app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
