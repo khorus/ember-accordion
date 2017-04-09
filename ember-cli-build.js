@@ -1,11 +1,14 @@
+/*jshint node:true*/
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-addon');
+var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 var mergeTrees = require('broccoli-merge-trees');
 var pickFiles = require('broccoli-static-compiler');
 
 module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
-    // Add options here
+  var app = new EmberAddon(defaults, {
+    'ember-composable-helpers': {
+      only: ['pipe']
+    }
   });
 
   app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');

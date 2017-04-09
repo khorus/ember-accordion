@@ -1,19 +1,70 @@
-<h1>Nested Accordion Example</h1>
-<p>TBD docs</p>
+<h3>Nested Accordion</h3>
 
-{{#accordion-list as |listId|}}
+{{#accordion-list as |outerAccordion|}}
   {{#each items as |item|}}
-    {{#accordion-item as |itemId|}}
+    {{#outerAccordion.item as |outerAccordionItem|}}
 
-      {{#accordion-toggle listId itemId}}
+      {{#outerAccordionItem.toggle}}
+        <i class="fa fa-angle-right"></i>
         {{item.name}}
-        <i class="fa fa-angle-down"></i>
-      {{/accordion-toggle}}
+      {{/outerAccordionItem.toggle}}
 
-      {{#accordion-panel listId itemId}}
-        {{accordion-list item.children 'accordion-elements/toggle' 'accordion-elements/panel'}}
-      {{/accordion-panel}}
+      {{#outerAccordionItem.panel openOnInit=true}}
+        {{#accordion-list as |innerAccordion|}}
+          {{#each item.children as |child|}}
+            {{#innerAccordion.item as |innerAccordionItem|}}
+              {{#innerAccordionItem.toggle}}
+                <i class="fa fa-angle-right"></i>
+                {{child.name}}
+              {{/innerAccordionItem.toggle}}
+              {{#innerAccordionItem.panel}}
+                {{child.value}}
+              {{/innerAccordionItem.panel}}
+            {{/innerAccordion.item}}
+          {{/each}}
+        {{/accordion-list}}
+      {{/outerAccordionItem.panel}}
 
-    {{/accordion-item}}
+    {{/outerAccordion.item}}
   {{/each}}
 {{/accordion-list}}
+
+{{#code-block}}
+&lt;!-- The trick here is naming outer and inner accordions differently. --&gt;
+
+
+&lt;!-- Note 'outerAccordion' --&gt;
+\{{#accordion-list as |outerAccordion|}}
+  \{{#each items as |item|}}
+
+    &lt;!-- Note 'outerAccordionItem' --&gt;
+    \{{#outerAccordion.item as |outerAccordionItem|}}
+      \{{#outerAccordionItem.toggle}}
+        &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
+        \{{item.name}}
+      \{{/outerAccordionItem.toggle}}
+
+      \{{#outerAccordionItem.panel}}
+
+        &lt;!-- Note 'innerAccordion' --&gt;
+        \{{#accordion-list as |innerAccordion|}}
+          \{{#each item.children as |child|}}
+
+            &lt;!-- Note 'innerAccordionItem' --&gt;
+            \{{#innerAccordion.item as |innerAccordionItem|}}
+              \{{#innerAccordionItem.toggle}}
+                &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
+                \{{child.name}}
+              \{{/innerAccordionItem.toggle}}
+              \{{#innerAccordionItem.panel}}
+                \{{child.value}}
+              \{{/innerAccordionItem.panel}}
+
+            \{{/innerAccordion.item}}
+          \{{/each}}
+        \{{/accordion-list}}
+      \{{/outerAccordionItem.panel}}
+    \{{/outerAccordion.item}}
+  \{{/each}}
+\{{/accordion-list}}
+{{/code-block}}

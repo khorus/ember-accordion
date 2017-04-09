@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      {{#link-to 'home' class="navbar-brand"}}ember-cli-accordion{{/link-to}}
+      {{#link-to 'home' class="navbar-brand"}}Ember Accordion{{/link-to}}
     </div>
     <div id="navbar">
       <ul class="nav navbar-nav">
@@ -9,7 +9,7 @@
           {{#link-to 'home'}}Home{{/link-to}}
         </li>
         <li>
-          <a href="https://github.com/khorus/ember-cli-accordion">Github</a>
+          <a href="https://github.com/khorus/ember-accordion">Github</a>
         </li>
       </ul>
     </div>
@@ -20,11 +20,10 @@
   <div class="row row-offcanvas row-offcanvas-left">
     <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
       <div class="list-group">
-        {{#link-to 'blockless' class="list-group-item"}}Classic Accordion{{/link-to}}
-        {{#link-to 'simple-block' class="list-group-item"}}Enhanced Accordion{{/link-to}}
-        {{#link-to 'nested' class="list-group-item"}}Nested Accordions{{/link-to}}
+        {{#link-to 'simple-block' class="list-group-item"}}Basic Usage{{/link-to}}
+        {{#link-to 'nested' class="list-group-item"}}Nesting{{/link-to}}
         {{#link-to 'multiple-panels' class="list-group-item"}}Multiple Panels per Item{{/link-to}}
-        {{#link-to 'action-curry' class="list-group-item"}}Action Currying{{/link-to}}
+        {{#link-to 'action-curry' class="list-group-item"}}Form Panels{{/link-to}}
       </div>
     </div>
 

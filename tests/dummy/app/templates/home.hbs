@@ -1,10 +1,9 @@
 <h1>Ember Accordion</h1>
 <p>
-  An ambitious Ember addon which provides components for
-  creating a list of items with collapsible content panels.
+  An Ember addon which provides components for creating a list of items with collapsible content panels.
 </p>
 
-<h2>Classic Accordion Behavior</h2>
+<h2>Classic Behavior</h2>
 <p>
   The simplest use case of {{#code-inline}}component:accordion-list{{/code-inline}} behaves much like a classic
   accordion from <a href="getbootstrap.com/2.3.2/javascript.html#collapse">boostrap</a> or
@@ -14,15 +13,15 @@
 
 {{accordion-list items 'accordion-elements/toggle' 'accordion-elements/panel'}}
 
-<h2>Enhanced Accordion Behavior</h2>
+<h2>Enhanced Behaviors</h2>
 <p>
   The {{#code-inline}}component:accordion-list{{/code-inline}} also supports some enhanced
   behavior:
   <ul>
-    <li>Optionally allow multiple items be be open at once</li>
+    <li>Configure whether multiple items can be open at once</li>
     <li>Set default open panel(s)</li>
-    <li>Items can have multiple toggle buttons and panels</li>
-    <li>Components rendered in the panel have access to a curried action to close the panel</li>
+    <li>Provide multiple toggle/panel pairs per item</li>
+    <li>Components rendered in the panel have access to a close action</li>
     <li>Accordions are easily nestable</li>
   </ul>
 </p>

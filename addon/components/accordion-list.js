@@ -1,34 +1,51 @@
 import Ember from 'ember';
-const { inject, computed } = Ember;
+import layout from '../templates/components/accordion-list';
+import Item from '../utils/item';
+
+const { isEqual } = Ember;
 
 const AccordionListComponent = Ember.Component.extend({
-  accordion: inject.service(),
+  layout,
   classNames: ["AccordionList"],
 
+  // Input params
   allowManyActiveItems: false,
-  listId: computed(function() { return this.elementId; }),
 
-  didInsertElement() {
+  // Internal state
+  _activeItems: null,
+  init() {
     this._super(...arguments);
-    Ember.run.scheduleOnce('afterRender', this, '_registerAccordion');
-  },
-  _registerAccordion() {
-    this.get('accordion').registerList({id: this.get('listId'), allowManyActiveItems: this.get('allowManyActiveItems')});
-  },
-  willDestroyElement() {
-    this._super(...arguments);
-    this.get('accordion').unregisterList(this.get('listId'));
+    this.set('_activeItems', Ember.A([]));
   },
 
   actions: {
-    closeItem: function(itemId) {
-      this.get('accordion').closeItem(this.get('listId'), itemId);
+    toggleItem(itemId, panelName) {
+      const activeItems = this.get('_activeItems');
+      const targetItem = activeItems.findBy('id', itemId);
+
+      // if target item is already active
+      if(targetItem) {
+        // and the panel is already active
+        if(isEqual(targetItem.get('panel'), panelName)) {
+          activeItems.removeObject(targetItem);
+        } else {
+          targetItem.set('panel', panelName);
+        }
+      } else {
+        // if simultanious active items are not allow, clear array
+        if(!this.get('allowManyActiveItems')) { activeItems.clear(); }
+
+        let newItem = Item.create({ id: itemId, panel: panelName });
+        activeItems.addObject(newItem);
+      }
+    },
+
+    closeItem(itemId) {
+      let activeItems = this.get('_activeItems');
+      const activeItem = activeItems.findBy('id', itemId);
+      activeItems.removeObject(activeItem);
     }
   }
-});
-
-AccordionListComponent.reopenClass({
-  positionalParams: ['items', 'toggleTemplate', 'panelTemplate']
 });
 
 export default AccordionListComponent;

@@ -1,124 +1,88 @@
-<h1>Simple Block Form Examples</h1>
-<p>
-The block form of {{#code-inline}}component:accordion-list{{/code-inline}} gives you greater
-customization of how the component behaves.  It also introduces the other three components in the addon.
-</p>
-<h3>Block Form Components</h3>
-{{#accordion-list as |listId|}}
-  {{#accordion-item as |itemId|}}
-    {{#accordion-toggle listId itemId}}
-      <i class="fa fa-angle-right"></i>component:accordion-item
-    {{/accordion-toggle}}
-    {{#accordion-panel listId itemId openOnInit=true}}
-      <p>
-      There should be one {{#code-inline}}component:accordion-item{{/code-inline}} per item in
-      the accordion.  It wraps an {{#code-inline}}component:accordion-toggle{{/code-inline}} and
-      {{#code-inline}}component:accordion-panel{{/code-inline}}.
-      </p>
-      <p>
-        <h4>Positional Parameters</h4>
-        None!
-        <h4>Block Params</h4>
-        <ul>
-          <li>{{#code-inline}}itemId{{/code-inline}} - consumed by the toggle and panel components</li>
-        </ul>
-      </p>
-    {{/accordion-panel}}
-  {{/accordion-item}}
-
-  {{#accordion-item as |itemId|}}
-    {{#accordion-toggle listId itemId}}
-      <i class="fa fa-angle-right"></i>component:accordion-toggle
-    {{/accordion-toggle}}
-    {{#accordion-panel listId itemId}}
-      <p>
-        {{#code-inline}}accordion-toggle{{/code-inline}} is the click target which opens/closes the
-        associated {{#code-inline}}accordion-panel{{/code-inline}}.
-        It should be wrapped with an {{#code-inline}}accordion-panel{{/code-inline}} in an
-        {{#code-inline}}accordion-item{{/code-inline}}.
-      </p>
-      <p>
-        <h4>Positional Parameters</h4>
-        Both the of the positional parameters are used by the {{#code-inline}}accordion-toggle{{/code-inline}} to
-        communicate to a service class who arbitrates which panels can be open.
-        <ol>
-          <li>{{#code-inline}}listId{{/code-inline}} - (required) id of the parent {{#code-inline}}accordion-list{{/code-inline}}</li>
-          <li>{{#code-inline}}itemId{{/code-inline}} - (required) id of the parent {{#code-inline}}accordion-item{{/code-inline}}</li>
-        </ol>
-        Note: If either {{#code-inline}}listId{{/code-inline}} or {{#code-inline}}itemId{{/code-inline}} are null or undefined
-        then the toggle component will set 'is-disabled' class and won't respond to click events.
-        <h4>Properties</h4>
-        <ul>
-          <li>
-            {{#code-inline}}panelName{{/code-inline}} - (optional) String. A toggle and panel component are paired to each other
-            by this property. It defaults to 'panel-one'.  This only needs to be set if an {{#code-inline}}accordion-item{{/code-inline}}
-            has multiple toggle/panel pairs.  In that case, each pair must have a unique panelName.
-          </li>
-          <li>
-          {{#code-inline}}openOnInit{{/code-inline}} - (optional) Boolean. When true this panel will default to being open when
-          the component is initialized. Note if {{#code-inline}}accordion-list.allowManyActiveItems{{/code-inline}}
-          is false then the last panel initialized with this property set will be open and the others will be closed.
-          </li>
-        </ul>
-        <h4>Block Params</h4>
-        <ul>
-          <li>
-            {{#code-inline}}isActive{{/code-inline}} - Boolean. Yields is active to the block.
-          </li>
-        </ul>
-      </p>
-    {{/accordion-panel}}
-  {{/accordion-item}}
-
-  {{#accordion-item as |itemId|}}
-    {{#accordion-toggle listId itemId}}
-      <i class="fa fa-angle-right"></i>component:accordion-panel
-    {{/accordion-toggle}}
-    {{#accordion-panel listId itemId}}
-      <p>
-        The block of the {{#code-inline}}accordion-panel{{/code-inline}} is the hidden content that should
-        only be displayed when the associated {{#code-inline}}accordion-toggle{{/code-inline}} is clicked.
-        It should be wrapped with a {{#code-inline}}accordion-panel{{/code-inline}} in an
-        {{#code-inline}}accordion-item{{/code-inline}}.
-      </p>
-      <p>
-        <h4>Positional Parameters</h4>
-        Both the of the positional parameters are used by the {{#code-inline}}accordion-panel{{/code-inline}} to
-        observe approriate objects on a service class to determine when it shoudl display its content.
-        <ol>
-          <li>{{#code-inline}}listId{{/code-inline}} - (required) id of the parent {{#code-inline}}accordion-list{{/code-inline}}</li>
-          <li>{{#code-inline}}itemId{{/code-inline}} - (required) id of the parent {{#code-inline}}accordion-item{{/code-inline}}</li>
-        </ol>
-        <h4>Properties</h4>
-        <ul>
-          <li>
-            {{#code-inline}}panelName{{/code-inline}} - (optional) String. A toggle and panel component are paired to each other
-            by this property. It defaults to 'panel-one'.  This only needs to be set if an {{#code-inline}}accordion-item{{/code-inline}}
-            has multiple toggle/panel pairs.  In that case, each pair must have a unique panelName.
-          </li>
-        </ul>
-        <h4>Block Params</h4>
-        None!
-      </p>
-    {{/accordion-panel}}
-  {{/accordion-item}}
+<h3>Example Usage</h3>
+{{#accordion-list as |accordion|}}
+  {{#each items as |item|}}
+    {{#accordion.item as |accordionItem|}}
+      {{#accordionItem.toggle}}
+        <i class="fa fa-angle-right"></i>
+        {{item.name}}
+      {{/accordionItem.toggle}}
+      {{#accordionItem.panel}}
+        {{item.description}}
+      {{/accordionItem.panel}}
+    {{/accordion.item}}
+  {{/each}}
 {{/accordion-list}}
 
 
-<h3>Example Code</h3>
-{{#code-block }}
-\{{#accordion-list as |listId|}}
-  \{{#each items as |item|}}
-    \{{#accordion-item as |itemId|}}
+{{#code-block language='markup'}}
+&lt;!-- Define a new accordion-list --&gt;
+\{{#accordion-list as |accordion|}}
 
-      \{{#accordion-toggle listId itemId}}
+  &lt;!-- Iterate over an array of items --&gt;
+  \{{#each items as |item|}}
+
+    &lt;!-- For each element in list create an 'accordion.item' --&gt;
+    \{{#accordion.item as |accordionItem|}}
+
+      &lt;!-- Create a 'toggle' and a 'panel' for the item --&gt;
+      \{{#accordionItem.toggle}}
         &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
         \{{item.name}}
-      \{{/accordion-toggle}}
-      \{{#accordion-panel listId itemId}}
-        \{{item.color}}
-      \{{/accordion-panel}}
+      \{{/accordionItem.toggle}}
 
-    \{{/accordion-item}}
+      &lt;!-- Clicking on the 'toggle' will display the contents of the 'panel' --&gt;
+      \{{#accordionItem.panel}}
+        \{{item.description}}
+      \{{/accordionItem.panel}}
+    \{{/accordion.item}}
   \{{/each}}
-\{{/accordion-list}}{{/code-block}}
+\{{/accordion-list}}
+{{/code-block}}
+
+
+<h3>Open Many Panels at Once</h3>
+{{#accordion-list allowManyActiveItems=true as |accordion|}}
+  {{#each items as |item|}}
+    {{#accordion.item as |accordionItem|}}
+      {{#accordionItem.toggle}}
+        <i class="fa fa-angle-right"></i>
+        {{item.name}}
+      {{/accordionItem.toggle}}
+      {{#accordionItem.panel}}
+        {{item.description}}
+      {{/accordionItem.panel}}
+    {{/accordion.item}}
+  {{/each}}
+{{/accordion-list}}
+
+{{#code-block language='markup'}}
+&lt;!-- Follow example above, set 'allowManyActiveItems=true' --&gt;
+\{{#accordion-list allowManyActiveItems=true as |accordion|}}
+  &lt;!-- ... --&gt;
+\{{/accordion-list}}
+{{/code-block}}
+
+<h3>Default Open Panel(s)</h3>
+{{#accordion-list allowManyActiveItems=true as |accordion|}}
+  {{#each items as |item|}}
+    {{#accordion.item as |accordionItem|}}
+      {{#accordionItem.toggle}}
+        <i class="fa fa-angle-right"></i>
+        {{item.name}}
+      {{/accordionItem.toggle}}
+      {{#accordionItem.panel openOnInit=true}}
+        {{item.description}}
+      {{/accordionItem.panel}}
+    {{/accordion.item}}
+  {{/each}}
+{{/accordion-list}}
+
+{{#code-block language='markup'}}
+&lt;!-- Set 'openOnInit=true' on the desired panel(s) --&gt;
+
+&lt;!-- ... --&gt;
+\{{#accordionItem.panel openOnInit=true}}
+  &lt;!-- ... --&gt;
+\{{/accordionItem.panel}}
+&lt;!-- ... --&gt;
+{{/code-block}}

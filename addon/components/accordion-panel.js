@@ -1,31 +1,38 @@
 import Ember from 'ember';
-import ElementActiveState from '../mixins/element-active-state';
-const { inject }  = Ember;
+import layout from '../templates/components/accordion-panel';
 
-const AccordionPanelComponent = Ember.Component.extend(ElementActiveState, {
-  accordion: inject.service('accordion'),
+const { computed, isEqual }  = Ember;
+
+const AccordionPanelComponent = Ember.Component.extend({
+  layout,
   classNames: ["AccordionPanel"],
   classNameBindings: ['isActive'],
 
   // Inputs
   panelName: 'panel-one',
 
+  isActive: computed('activePanelName', 'panelName', function() {
+    return isEqual(this.get('activePanelName'), this.get('panelName'));
+  }),
   openOnInit: false,
-  didInsertElement() {
-    this._super(...arguments);
-    Ember.run.next(this, '_activateDefaultPanel');
-  },
   _activateDefaultPanel() {
     if(this.isDestroying) { return; }
 
     if(this.get('openOnInit')) {
-      this.get('accordion').toggleClick(this.getProperties('listId', 'itemId', 'panelName'));
+      this.get('toggle')(this.get('panelName'));
     }
+  },
+
+  init() {
+    this._super(...arguments);
+    Ember.run.next(() => {
+      this._activateDefaultPanel();
+    });
   }
 });
 
 AccordionPanelComponent.reopenClass({
-  positionalParams: ['listId', 'itemId']
+  positionalParams: ['activePanelName', 'toggle']
 });
 
 export default AccordionPanelComponent;

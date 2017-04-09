@@ -1,55 +1,98 @@
 <div class='MultiplePanelsPage'>
-  <h1>Multiple Panels per Item</h1>
+  <h3>Multiple Panels per Item</h3>
 
-  {{#accordion-list as |listId|}}
-    {{#accordion-item as |itemId|}}
+  {{#accordion-list as |accordion|}}
+    {{#accordion.item as |accordionItem|}}
       <h4>
-        accordion-item with two panels
+        Accordion Item with two panels
         <div class="AccordionItem-toggles">
-          {{#accordion-toggle listId itemId panelName="comments" as |isActive|}}
+          {{#accordionItem.toggle panelName="comments" as |isActive|}}
             {{#if isActive}}
               <i class="fa fa-comment"></i>
             {{else}}
               <i class="fa fa-comment-o"></i>
             {{/if}}
-          {{/accordion-toggle}}
-          {{#accordion-toggle listId itemId panelName="info" as |isActive|}}
+          {{/accordionItem.toggle}}
+          {{#accordionItem.toggle panelName="info" as |isActive|}}
             {{#if isActive}}
               <i class="fa fa-question-circle"></i>
             {{else}}
               <i class="fa fa-question"></i>
             {{/if}}
-          {{/accordion-toggle}}
+          {{/accordionItem.toggle}}
         </div>
       </h4>
 
-      {{#accordion-panel listId itemId panelName="comments"}}
+      {{#accordionItem.panel panelName="comments"}}
         Here are some comments... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elementum odio, sit amet feugiat risus. Integer venenatis eget quam a scelerisque. Nulla tincidunt tellus at maximus iaculis. Nulla a risus sed augue consectetur vehicula. Nunc lorem dolor, consectetur sed turpis eu, aliquam interdum velit. Aenean sit amet orci ut purus varius consequat. Morbi feugiat, ligula vel vehicula mattis, turpis nisl bibendum velit, vitae efficitur sapien nisi at ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
-      {{/accordion-panel}}
-      {{#accordion-panel listId itemId panelName="info"}}
+      {{/accordionItem.panel}}
+      {{#accordionItem.panel panelName="info"}}
         Here is some info
-      {{/accordion-panel}}
+      {{/accordionItem.panel}}
 
-    {{/accordion-item}}
+    {{/accordion.item}}
 
-    {{#accordion-item as |itemId|}}
+    {{#accordion.item as |accordionItem|}}
       <h4>
-        accordion-item with comments panel
+        Accordion item with comments panel
         <div class="AccordionItem-toggles">
-          {{#accordion-toggle listId itemId as |isActive|}}
+          {{#accordionItem.toggle as |isActive|}}
             {{#if isActive}}
               <i class="fa fa-comment"></i>
             {{else}}
               <i class="fa fa-comment-o"></i>
             {{/if}}
-          {{/accordion-toggle}}
+          {{/accordionItem.toggle}}
         </div>
       </h4>
 
-      {{#accordion-panel listId itemId}}
+      {{#accordionItem.panel}}
         Here are comments about the other thing.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elementum odio, sit amet feugiat risus. Integer venenatis eget quam a scelerisque. Nulla tincidunt tellus at maximus iaculis. Nulla a risus sed augue consectetur vehicula. Nunc lorem dolor, consectetur sed turpis eu, aliquam interdum velit. Aenean sit amet orci ut purus varius consequat. Morbi feugiat, ligula vel vehicula mattis, turpis nisl bibendum velit, vitae efficitur sapien nisi at ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
-      {{/accordion-panel}}
+      {{/accordionItem.panel}}
 
-    {{/accordion-item}}
+    {{/accordion.item}}
   {{/accordion-list}}
 </div>
+
+{{#code-block language='markup'}}
+&lt;!-- To enable more than one toggle/panel pair for an item, use the 'panelName' property. --&gt;
+&lt;!-- The 'panelName' should be set to the same value for each toggle/panel pair. --&gt;
+
+\{{#accordion-list as |accordion|}}
+  \{{#accordion.item as |accordionItem|}}
+    &lt;h4&gt;
+      Accordion Item with two panels
+      &lt;div class="AccordionItem-toggles"&gt;
+        \{{#accordionItem.toggle panelName="comments" as |isActive|}}
+          &lt;!-- ... --&gt;
+        \{{/accordionItem.toggle}}
+        \{{#accordionItem.toggle panelName="info" as |isActive|}}
+          &lt;!-- ... --&gt;
+        \{{/accordionItem.toggle}}
+      &lt;/div&gt;
+    &lt;/h4&gt;
+
+    \{{#accordionItem.panel panelName="comments"}}
+      Here are some comments...
+    \{{/accordionItem.panel}}
+    \{{#accordionItem.panel panelName="info"}}
+      Here is some info
+    \{{/accordionItem.panel}}
+
+  \{{/accordion.item}}
+\{{/accordion-list}}
+{{/code-block}}
+
+
+{{#code-block}}
+&lt;!-- This example also highlights the yielded 'isActive' proprty of toggle which allows for --&gt;
+&lt;!-- customizing the toggle based on active state. --&gt;
+
+\{{#accordionItem.toggle panelName="comments" as |isActive|}}
+  \{{#if isActive}}
+    &lt;i class="fa fa-comment"&gt;&lt;/i&gt;
+  \{{else}}
+    &lt;i class="fa fa-comment-o"&gt;&lt;/i&gt;
+  \{{/if}}
+\{{/accordionItem.toggle}}
+{{/code-block}}
