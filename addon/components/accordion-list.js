@@ -24,13 +24,8 @@ const AccordionListComponent = Ember.Component.extend({
   allExpanded: computed('_activeItems.[]', '_registeredItems.[]', function() {
     let { _activeItems, _registeredItems } = this.getProperties('_activeItems', '_registeredItems');
 
-    for (let i=0; i < _registeredItems.length; i++) {
-      if (isNone(_activeItems.findBy('id', _registeredItems[i].itemId))) {
-        return false;
-      }
-    }
-
-    return true;
+    let anyMissing = _registeredItems.reduce((anyMissing, item) => anyMissing || isNone(_activeItems.findBy('id', item.itemId)), false);
+    return !anyMissing;
   }),
 
   actions: {
