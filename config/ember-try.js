@@ -12,6 +12,7 @@ module.exports = function() {
       scenarios: [
         {
           name: 'ember-lts-2.4',
+          allowedToFail: true,
           bower: {
             dependencies: {
               'ember': 'components/ember#lts-2-4'
