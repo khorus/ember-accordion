@@ -6,7 +6,13 @@ module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     'ember-composable-helpers': {
       only: ['pipe']
-    }
+    },
+
+    'ember-bootstrap': {
+      'bootstrapVersion': 4,
+      'importBootstrapFont': false,
+      'importBootstrapCSS': false
+    },
   });
 
   return app.toTree();

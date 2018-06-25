@@ -5,7 +5,7 @@
     {{#outerAccordion.item as |outerAccordionItem|}}
 
       {{#outerAccordionItem.toggle}}
-        <i class="fa fa-angle-right"></i>
+        <span class='angle-right'>></span>
         {{item.name}}
       {{/outerAccordionItem.toggle}}
 
@@ -14,7 +14,7 @@
           {{#each item.children as |child|}}
             {{#innerAccordion.item as |innerAccordionItem|}}
               {{#innerAccordionItem.toggle}}
-                <i class="fa fa-angle-right"></i>
+                <span class='angle-right'>></span>
                 {{child.name}}
               {{/innerAccordionItem.toggle}}
               {{#innerAccordionItem.panel}}
