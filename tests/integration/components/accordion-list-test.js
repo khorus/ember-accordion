@@ -1,6 +1,11 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, findAll, find } from '@ember/test-helpers';
+import {
+  click,
+  find,
+  findAll,
+  render
+} from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | accordion list', function(hooks) {
@@ -58,11 +63,11 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    this.$('.AccordionToggle')[0].click();
+    await click('.AccordionItem:nth-of-type(1) .AccordionToggle');
     assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking toggle 1, panel 1 should be active");
 
-    this.$('.AccordionToggle')[1].click();
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 2", "after clicking toggle 2, panel 2 should be active");
+    await click('.AccordionItem:nth-of-type(2) .AccordionToggle');
+    assert.equal(find('.AccordionItem:nth-of-type(2) .AccordionPanel').textContent.trim(), "panel 2", "after clicking toggle 2, panel 2 should be active");
   });
 
   test("basic operation with allowManyActiveItems=true", async function(assert) {
@@ -88,11 +93,12 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    this.$('.AccordionToggle')[0].click();
+    await click('.AccordionItem:nth-of-type(1) .AccordionToggle');
     assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking toggle 1, panel 1 should be active");
 
-    this.$('.AccordionToggle')[1].click();
-    assert.ok(find('.AccordionPanel').textContent.match(/panel 1\s+panel 2/), "after clicking toggle 2, both panels should be active");
+    await click('.AccordionItem:nth-of-type(2) .AccordionToggle');
+    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking toggle 1, panel 1 should be active");
+    assert.equal(find('.AccordionItem:nth-of-type(2) .AccordionPanel').textContent.trim(), "panel 2", "after clicking toggle 2, panel 2 should be active");
   });
 
   test("basic operation with a default open panel", async function(assert) {
@@ -118,8 +124,7 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    this.$('.AccordionToggle')[1].click();
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 2", "after initial render, panel 2 should be active");
+    assert.equal(find('.AccordionItem:nth-of-type(2) .AccordionPanel').textContent.trim(), "panel 2", "after initial render, panel 2 should be active");
   });
 
   test("operation with multiple toggle/panel pairs in a single item", async function(assert) {
@@ -133,21 +138,21 @@ module('Integration | Component | accordion list', function(hooks) {
             panel 1
           {{/accordionItem.panel}}
 
-          {{#accordionItem.toggle panelName='two'}}
+          {{#accordionItem.toggle panelName='two' class='toggle2'}}
             toggle 2
           {{/accordionItem.toggle}}
-          {{#accordionItem.panel panelName='two'}}
+          {{#accordionItem.panel panelName='two' class='panel2'}}
             panel 2
           {{/accordionItem.panel}}
         {{/accordion.item}}
       {{/accordion-list}}
     `);
 
-    this.$('.AccordionToggle')[0].click();
+    await click('.AccordionItem:nth-of-type(1) .AccordionToggle:nth-of-type(1)');
     assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking on toggle 1, panel 1 should be active");
 
-    this.$('.AccordionToggle')[1].click();
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 2", "after clicking on toggle 2, panel 2 should be active");
+    await click('.toggle2');
+    assert.equal(find('.panel2').textContent.trim(), "panel 2", "after clicking on toggle 2, panel 2 should be active");
   });
 
   test("curried close action", async function(assert) {
@@ -167,11 +172,11 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    this.$('.AccordionToggle')[0].click();
-    assert.ok(find('.AccordionPanel').textContent.match(/panel 1/), "after clicking toggle 1, panel 1 should be active");
+    await click('.AccordionItem:nth-of-type(1) .AccordionToggle');
+    assert.ok(find('.AccordionItem:nth-of-type(1) .AccordionPanel').textContent.match(/panel 1/), "after clicking toggle 1, panel 1 should be active");
 
-    this.$('.AccordionPanel button')[0].click();
-    assert.notOk(find('.AccordionPanel').textContent.match(/panel 1/), "after clicking close button in panel 1, panel 1 should not be active");
+    await click('.AccordionItem:nth-of-type(1) .AccordionPanel button');
+    assert.notOk(find('.AccordionItem:nth-of-type(1) .AccordionPanel').textContent.match(/panel 1/), "after clicking close button in panel 1, panel 1 should not be active");
   });
 
   test("operation with nested accordions", async function(assert) {
@@ -211,7 +216,7 @@ module('Integration | Component | accordion list', function(hooks) {
           {{#accordionItem.toggle}}
             outer toggle 2
           {{/accordionItem.toggle}}
-          {{#accordionItem.panel}}
+          {{#accordionItem.panel class='outer-panel-2'}}
             outer panel 2
           {{/accordionItem.panel}}
         {{/accordion.item}}
@@ -225,7 +230,7 @@ module('Integration | Component | accordion list', function(hooks) {
     assert.ok(find('.AccordionPanel').textContent.match(/inner panel 1/), "after clicking inner toggle 1, inner panel 1 should be active");
 
     this.$(".AccordionToggle:contains('outer toggle 2')").click();
-    assert.ok(find('.AccordionPanel').textContent.match(/outer panel 2/), "after clicking outer toggle 2, outer panel 2 should be active");
+    assert.ok(find('.outer-panel-2').textContent.match(/outer panel 2/), "after clicking outer toggle 2, outer panel 2 should be active");
 
     // verify that the active pannel of the inner accordion is reset when panel 1 is reopened
     this.$(".AccordionToggle:contains('outer toggle 1')").click();
