@@ -1,16 +1,16 @@
-import Ember from 'ember';
+import { notEmpty } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/accordion-item';
 
-const { computed } = Ember;
-
-const AccordionItemComponent = Ember.Component.extend({
+const AccordionItemComponent = Component.extend({
   layout,
   classNames: ["AccordionItem"],
 
   itemId: computed(function() { return this.elementId; }),
 
   // item is active if there is an item in activeItems matching 'itemId'
-  isActive: computed.notEmpty('ownActiveItem'),
+  isActive: notEmpty('ownActiveItem'),
   ownActiveItem: computed('activeItems.@each.id', 'itemId', function() {
     return this.get('activeItems').findBy('id', this.get('itemId'));
   }),

@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isEqual } from '@ember/utils';
 import layout from '../templates/components/accordion-toggle';
 
-const { computed, isEqual }  = Ember;
-
-const AccordionToggleComponent = Ember.Component.extend({
+const AccordionToggleComponent = Component.extend({
   layout,
   classNames: ["AccordionToggle"],
   classNameBindings: ['isActive', 'disabled'],
