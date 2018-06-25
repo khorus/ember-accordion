@@ -11,6 +11,38 @@ module.exports = function() {
     return {
       scenarios: [
         {
+          name: 'ember-lts-2.4',
+          bower: {
+            dependencies: {
+              'ember': 'components/ember#lts-2-4'
+            },
+            resolutions: {
+              'ember': 'lts-2-4'
+            }
+          },
+          npm: {
+            devDependencies: {
+              'ember-source': null
+            }
+          }
+        },
+        {
+          name: 'ember-lts-2.8',
+          bower: {
+            dependencies: {
+              'ember': 'components/ember#lts-2-8'
+            },
+            resolutions: {
+              'ember': 'lts-2-8'
+            }
+          },
+          npm: {
+            devDependencies: {
+              'ember-source': null
+            }
+          }
+        },
+        {
           name: 'ember-lts-2.12',
           npm: {
             devDependencies: {
@@ -44,6 +76,7 @@ module.exports = function() {
         },
         {
           name: 'ember-beta',
+          allowedToFail: true,
           npm: {
             devDependencies: {
               'ember-source': urls[1]
@@ -52,6 +85,7 @@ module.exports = function() {
         },
         {
           name: 'ember-canary',
+          allowedToFail: true,
           npm: {
             devDependencies: {
               'ember-source': urls[2]

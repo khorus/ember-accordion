@@ -24,4 +24,4 @@ jobs:
       - run: echo 'export PATH=~/gitzoom-web/node_modules/.bin:$PATH' >> $BASH_ENV
       - run:
           name: Run Tests
-          command: yarn test
+          command: yarn test:all
