@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isNone, isEqual } from '@ember/utils';
 import layout from '../templates/components/accordion-list';
 import Item from '../utils/item';
 
-const { isEqual, computed, isNone } = Ember;
-
-const AccordionListComponent = Ember.Component.extend({
+const AccordionListComponent = Component.extend({
   layout,
   classNames: ["AccordionList"],
 
@@ -16,8 +17,8 @@ const AccordionListComponent = Ember.Component.extend({
   _registeredItems: null,
   init() {
     this._super(...arguments);
-    this.set('_activeItems', Ember.A([]));
-    this.set('_registeredItems', Ember.A([]));
+    this.set('_activeItems', A([]));
+    this.set('_registeredItems', A([]));
   },
 
   // If each registered item has at least on panel open, then return true

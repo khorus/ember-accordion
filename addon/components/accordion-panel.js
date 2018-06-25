@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { next } from '@ember/runloop';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isEqual } from '@ember/utils';
 import layout from '../templates/components/accordion-panel';
 
-const { computed, isEqual }  = Ember;
-
-const AccordionPanelComponent = Ember.Component.extend({
+const AccordionPanelComponent = Component.extend({
   layout,
   classNames: ["AccordionPanel"],
   classNameBindings: ['isActive'],
@@ -25,7 +26,7 @@ const AccordionPanelComponent = Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    Ember.run.next(() => {
+    next(() => {
       this.get('register')(this.get('panelName'));
       this._activateDefaultPanel();
     });

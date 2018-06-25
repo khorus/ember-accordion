@@ -7,18 +7,10 @@
         Accordion Item with two panels
         <div class="AccordionItem-toggles">
           {{#accordionItem.toggle panelName="comments" as |isActive|}}
-            {{#if isActive}}
-              <i class="fa fa-comment"></i>
-            {{else}}
-              <i class="fa fa-comment-o"></i>
-            {{/if}}
+            comments
           {{/accordionItem.toggle}}
           {{#accordionItem.toggle panelName="info" as |isActive|}}
-            {{#if isActive}}
-              <i class="fa fa-question-circle"></i>
-            {{else}}
-              <i class="fa fa-question"></i>
-            {{/if}}
+            info
           {{/accordionItem.toggle}}
         </div>
       </h4>
@@ -37,11 +29,7 @@
         Accordion item with comments panel
         <div class="AccordionItem-toggles">
           {{#accordionItem.toggle as |isActive|}}
-            {{#if isActive}}
-              <i class="fa fa-comment"></i>
-            {{else}}
-              <i class="fa fa-comment-o"></i>
-            {{/if}}
+            comments
           {{/accordionItem.toggle}}
         </div>
       </h4>

@@ -1,4 +1,4 @@
-@import 'bourbon';
+@import "ember-bootstrap/bootstrap";
 
 .Application {
   padding-top: 60px;
@@ -6,13 +6,14 @@
 
 .AccordionToggle {
   padding: 0.5rem 1rem;
-  .fa-angle-right {
-    @include transition-property(transform);
-    @include transition-duration(150ms);
-    @include transition-timing-function(ease);
+  .angle-right {
+    display: inline-block;
+    transition-property: transform;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
   }
-  &.is-active .fa-angle-right {
-    @include transform(rotate( 90deg ));
+  &.is-active .angle-right {
+    transform: rotate(90deg);
   }
   &.is-active {
     border-bottom: 1px solid lightgrey;
@@ -29,12 +30,12 @@
 
 .MultiplePanelsPage {
   & .AccordionItem > h4 {
-    @include display(flex);
-    @include justify-content(space-between);
+    display: flex;
+    justify-content: space-between;
     padding: 0.5rem;
   }
   & .AccordionItem-toggles {
-    @include display(flex);
+    display: flex;
     margin-top: -8px;
   }
   .AccordionToggle.is-active {

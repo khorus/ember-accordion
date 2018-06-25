@@ -3,7 +3,7 @@
   {{#each items as |item|}}
     {{#accordion.item as |accordionItem|}}
       {{#accordionItem.toggle}}
-        <i class="fa fa-angle-right"></i>
+        <span class='angle-right'>></span>
         {{item.name}}
       {{/accordionItem.toggle}}
       {{#accordionItem.panel}}
@@ -26,7 +26,7 @@
 
       &lt;!-- Create a 'toggle' and a 'panel' for the item --&gt;
       \{{#accordionItem.toggle}}
-        &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
+        &lt;i class="fas fa-angle-right"&gt;&lt;/i&gt;
         \{{item.name}}
       \{{/accordionItem.toggle}}
 
@@ -50,7 +50,7 @@
   {{#each items as |item|}}
     {{#accordion.item as |accordionItem|}}
       {{#accordionItem.toggle}}
-        <i class="fa fa-angle-right"></i>
+        <span class='angle-right'>></span>
         {{item.name}}
       {{/accordionItem.toggle}}
       {{#accordionItem.panel}}
@@ -73,6 +73,7 @@
     {{#accordion.item as |accordionItem|}}
       {{#accordionItem.toggle}}
         <i class="fa fa-angle-right"></i>
+        <span class='angle-right'>></span>
         {{item.name}}
       {{/accordionItem.toggle}}
       {{#accordionItem.panel openOnInit=true}}
