@@ -1,0 +1,27 @@
+# .circleci/config.yml
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:6-browsers
+        environment:
+          JOBS: 2
+    working_directory: ~/gitzoom-web
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v1-deps-{{ .Branch }}-
+            - v1-deps-
+      - run:
+          name: Yarn Install
+          command: yarn install --non-interactive
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - run: echo 'export PATH=~/gitzoom-web/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Run Tests
+          command: yarn test
