@@ -1,7 +1,10 @@
 {{yield
   (hash
     toggle=(component 'accordion-toggle' activePanel (action 'togglePanel'))
-    panel=(component 'accordion-panel' activePanel (action 'togglePanel'))
+    panel=(component 'accordion-panel' activePanel (action 'togglePanel')
+      register=(action register itemId)
+      unregister=(action unregister itemId)
+    )
     close=(action close itemId)
   )
 }}

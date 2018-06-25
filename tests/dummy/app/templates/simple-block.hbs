@@ -42,6 +42,11 @@
 
 <h3>Open Many Panels at Once</h3>
 {{#accordion-list allowManyActiveItems=true as |accordion|}}
+  {{#if accordion.allExpanded}}
+    <a href='#' {{action accordion.collapseAll}}>Collapse All</a>
+  {{else}}
+    <a href='#' {{action accordion.expandAll}}>Expand All</a>
+  {{/if}}
   {{#each items as |item|}}
     {{#accordion.item as |accordionItem|}}
       {{#accordionItem.toggle}}
