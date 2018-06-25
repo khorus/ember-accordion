@@ -25,10 +25,15 @@ const AccordionPanelComponent = Ember.Component.extend({
 
   init() {
     this._super(...arguments);
+    this.get('register')(this.get('panelName'));
     Ember.run.next(() => {
       this._activateDefaultPanel();
     });
-  }
+  },
+
+  willDestroyElement() {
+    this.get('unregister')(this.get('panelName'));
+  },
 });
 
 AccordionPanelComponent.reopenClass({
