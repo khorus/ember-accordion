@@ -27,15 +27,15 @@ module('Integration | Component | accordion list', function(hooks) {
     `);
 
     assert.equal(findAll('.AccordionToggle').length, 1, 'should render one toggle per item');
-    assert.equal(this.$().find('.AccordionToggle').text().trim(), "This is the toggle", 'should render one toggle per item');
+    assert.equal(find('.AccordionToggle').textContent.trim(), "This is the toggle", 'should render one toggle per item');
 
     // first click should open the panel
-    this.$('.AccordionToggle')[0].click();
+    await click('.AccordionToggle');
     assert.equal(find('.AccordionPanel').textContent.trim(), "This is the panel", "panel should be active");
     assert.equal(findAll('.AccordionPanel.is-active').length, 1, 'panel should have is-active class');
 
     // second click should close the panel
-    this.$('.AccordionToggle')[0].click();
+    await click('.AccordionToggle');
     assert.equal(find('.AccordionPanel').textContent.trim(), "", "panel should not be active");
     assert.equal(findAll('.AccordionPanel.is-active').length, 0, 'panel should not have is-active class');
   });
@@ -223,17 +223,42 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    this.$(".AccordionToggle:contains('outer toggle 1')").click();
+    await click(findAll('.AccordionToggle')
+      .reduce((memo, element) => {
+        if (RegExp('outer toggle 1').test(element.textContent)) {
+          memo = element;
+        }
+        return memo;
+      }));
+
     assert.ok(find('.AccordionPanel').textContent.match(/outer panel 1/), "after clicking outer toggle 1, outer panel 1 should be active");
 
-    this.$(".AccordionToggle:contains('inner toggle 1')").click();
+    await click(findAll('.AccordionToggle')
+      .reduce((memo, element) => {
+        if (RegExp('inner toggle 1').test(element.textContent)) {
+          memo = element;
+        }
+        return memo;
+      }));
     assert.ok(find('.AccordionPanel').textContent.match(/inner panel 1/), "after clicking inner toggle 1, inner panel 1 should be active");
 
-    this.$(".AccordionToggle:contains('outer toggle 2')").click();
+    await click(findAll('.AccordionToggle')
+      .reduce((memo, element) => {
+        if (RegExp('outer toggle 2').test(element.textContent)) {
+          memo = element;
+        }
+        return memo;
+      }));
     assert.ok(find('.outer-panel-2').textContent.match(/outer panel 2/), "after clicking outer toggle 2, outer panel 2 should be active");
 
     // verify that the active pannel of the inner accordion is reset when panel 1 is reopened
-    this.$(".AccordionToggle:contains('outer toggle 1')").click();
+    await click(findAll('.AccordionToggle')
+      .reduce((memo, element) => {
+        if (RegExp('outer toggle 2').test(element.textContent)) {
+          memo = element;
+        }
+        return memo;
+      }));
     assert.notOk(find('.AccordionPanel').textContent.match(/inner panel 1/), "after reopening outer panel 1, inner panel 1 should not be active");
   });
 });
