@@ -26,18 +26,18 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    assert.equal(findAll('.AccordionToggle').length, 1, 'should render one toggle per item');
-    assert.equal(find('.AccordionToggle').textContent.trim(), "This is the toggle", 'should render one toggle per item');
+    assert.dom('.AccordionToggle').exists({ count: 1 }, 'should render one toggle per item');
+    assert.dom('.AccordionToggle').hasText('This is the toggle', 'should render one toggle per item');
 
     // first click should open the panel
     await click('.AccordionToggle');
-    assert.equal(find('.AccordionPanel').textContent.trim(), "This is the panel", "panel should be active");
-    assert.equal(findAll('.AccordionPanel.is-active').length, 1, 'panel should have is-active class');
+    assert.dom('.AccordionPanel').hasText('This is the panel', "panel should be active");
+    assert.dom('.AccordionPanel.is-active').exists({ count: 1 }, 'panel should have is-active class');
 
     // second click should close the panel
     await click('.AccordionToggle');
-    assert.equal(find('.AccordionPanel').textContent.trim(), "", "panel should not be active");
-    assert.equal(findAll('.AccordionPanel.is-active').length, 0, 'panel should not have is-active class');
+    assert.dom('.AccordionPanel').hasText('', "panel should not be active");
+    assert.dom('.AccordionPanel.is-active').doesNotExist('panel should not have is-active class');
   });
 
   test("basic operation with allowManyActiveItems=false", async function(assert) {
@@ -64,10 +64,10 @@ module('Integration | Component | accordion list', function(hooks) {
     `);
 
     await click('.AccordionItem:nth-of-type(1) .AccordionToggle');
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking toggle 1, panel 1 should be active");
+    assert.dom('.AccordionPanel').hasText('panel 1', "after clicking toggle 1, panel 1 should be active");
 
     await click('.AccordionItem:nth-of-type(2) .AccordionToggle');
-    assert.equal(find('.AccordionItem:nth-of-type(2) .AccordionPanel').textContent.trim(), "panel 2", "after clicking toggle 2, panel 2 should be active");
+    assert.dom('.AccordionItem:nth-of-type(2) .AccordionPanel').hasText('panel 2', "after clicking toggle 2, panel 2 should be active");
   });
 
   test("basic operation with allowManyActiveItems=true", async function(assert) {
@@ -94,11 +94,11 @@ module('Integration | Component | accordion list', function(hooks) {
     `);
 
     await click('.AccordionItem:nth-of-type(1) .AccordionToggle');
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking toggle 1, panel 1 should be active");
+    assert.dom('.AccordionPanel').hasText('panel 1', "after clicking toggle 1, panel 1 should be active");
 
     await click('.AccordionItem:nth-of-type(2) .AccordionToggle');
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking toggle 1, panel 1 should be active");
-    assert.equal(find('.AccordionItem:nth-of-type(2) .AccordionPanel').textContent.trim(), "panel 2", "after clicking toggle 2, panel 2 should be active");
+    assert.dom('.AccordionPanel').hasText('panel 1', "after clicking toggle 1, panel 1 should be active");
+    assert.dom('.AccordionItem:nth-of-type(2) .AccordionPanel').hasText('panel 2', "after clicking toggle 2, panel 2 should be active");
   });
 
   test("basic operation with a default open panel", async function(assert) {
@@ -124,7 +124,7 @@ module('Integration | Component | accordion list', function(hooks) {
       {{/accordion-list}}
     `);
 
-    assert.equal(find('.AccordionItem:nth-of-type(2) .AccordionPanel').textContent.trim(), "panel 2", "after initial render, panel 2 should be active");
+    assert.dom('.AccordionItem:nth-of-type(2) .AccordionPanel').hasText('panel 2', "after initial render, panel 2 should be active");
   });
 
   test("operation with multiple toggle/panel pairs in a single item", async function(assert) {
@@ -149,10 +149,10 @@ module('Integration | Component | accordion list', function(hooks) {
     `);
 
     await click('.AccordionItem:nth-of-type(1) .AccordionToggle:nth-of-type(1)');
-    assert.equal(find('.AccordionPanel').textContent.trim(), "panel 1", "after clicking on toggle 1, panel 1 should be active");
+    assert.dom('.AccordionPanel').hasText('panel 1', "after clicking on toggle 1, panel 1 should be active");
 
     await click('.toggle2');
-    assert.equal(find('.panel2').textContent.trim(), "panel 2", "after clicking on toggle 2, panel 2 should be active");
+    assert.dom('.panel2').hasText('panel 2', "after clicking on toggle 2, panel 2 should be active");
   });
 
   test("curried close action", async function(assert) {
