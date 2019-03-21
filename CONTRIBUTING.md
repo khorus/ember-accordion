@@ -1,3 +1,5 @@
+# How To Contribute
+
 ## Installation
 
 * `git clone <repository-url>`

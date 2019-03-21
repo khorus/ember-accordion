@@ -39,10 +39,13 @@ $ ember install ember-accordion@0.3.6
 
 # Upgrades
 
-For upgrade notes see [changelog](./CHANGELOG.md)
+For upgrade notes see the [changelog](CHANGELOG.md)
 
 
-# [Contributing](./CONTRIBUTING.md)
+# Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
 
 # License
 
