@@ -1,94 +1,94 @@
-<h3>Example Usage</h3>
-{{#accordion-list as |accordion|}}
+AccordionList<h3>Example Usage</h3>
+<AccordionList as |accordion|>
   {{#each items as |item|}}
-    {{#accordion.item as |accordionItem|}}
-      {{#accordionItem.toggle}}
+    <accordion.item as |accordionItem|>
+      <accordionItem.toggle>
         <span class='angle-right'>></span>
         {{item.name}}
-      {{/accordionItem.toggle}}
-      {{#accordionItem.panel}}
+      </accordionItem.toggle>
+      <accordionItem.panel>
         {{item.description}}
-      {{/accordionItem.panel}}
-    {{/accordion.item}}
+      </accordionItem.panel>
+    </accordion.item>
   {{/each}}
-{{/accordion-list}}
+</AccordionList>
 
 
 {{#code-block language='markup'}}
-&lt;!-- Define a new accordion-list --&gt;
-\{{#accordion-list as |accordion|}}
+&lt;!-- Define a new AccordionList --&gt;
+&lt;AccordionList as |accordion|&gt;
 
   &lt;!-- Iterate over an array of items --&gt;
   \{{#each items as |item|}}
 
     &lt;!-- For each element in list create an 'accordion.item' --&gt;
-    \{{#accordion.item as |accordionItem|}}
+    &lt;accordion.item as |accordionItem|&gt;
 
       &lt;!-- Create a 'toggle' and a 'panel' for the item --&gt;
-      \{{#accordionItem.toggle}}
+      &lt;accordionItem.toggle&gt;
         &lt;i class="fas fa-angle-right"&gt;&lt;/i&gt;
         \{{item.name}}
-      \{{/accordionItem.toggle}}
+      &lt;/accordionItem.toggle&gt;
 
       &lt;!-- Clicking on the 'toggle' will display the contents of the 'panel' --&gt;
-      \{{#accordionItem.panel}}
+      &lt;accordionItem.panel&gt;
         \{{item.description}}
-      \{{/accordionItem.panel}}
-    \{{/accordion.item}}
+      &lt;/accordionItem.panel&gt;
+    &lt;/accordion.item&gt;
   \{{/each}}
-\{{/accordion-list}}
+&lt;AccordionList&gt;
 {{/code-block}}
 
 
 <h3>Open Many Panels at Once</h3>
-{{#accordion-list allowManyActiveItems=true as |accordion|}}
+<AccordionList allowManyActiveItems=true as |accordion|>
   {{#if accordion.allExpanded}}
     <a href='#' {{action accordion.collapseAll}}>Collapse All</a>
   {{else}}
     <a href='#' {{action accordion.expandAll}}>Expand All</a>
   {{/if}}
   {{#each items as |item|}}
-    {{#accordion.item as |accordionItem|}}
-      {{#accordionItem.toggle}}
+    <accordion.item as |accordionItem|>
+      <accordionItem.toggle>
         <span class='angle-right'>></span>
         {{item.name}}
-      {{/accordionItem.toggle}}
-      {{#accordionItem.panel}}
+      </accordionItem.toggle>
+      <accordionItem.panel>
         {{item.description}}
-      {{/accordionItem.panel}}
-    {{/accordion.item}}
+      </accordionItem.panel>
+    </accordion.item>
   {{/each}}
-{{/accordion-list}}
+</AccordionList>
 
 {{#code-block language='markup'}}
 &lt;!-- Follow example above, set 'allowManyActiveItems=true' --&gt;
-\{{#accordion-list allowManyActiveItems=true as |accordion|}}
+&lt;AccordionList @allowManyActiveItems={{true}} as |accordion|&gt;
   &lt;!-- ... --&gt;
-\{{/accordion-list}}
+&lt;/AccordionList&gt;
 {{/code-block}}
 
 <h3>Default Open Panel(s)</h3>
-{{#accordion-list allowManyActiveItems=true as |accordion|}}
+<AccordionList @allowManyActiveItems={{true}} as |accordion|>
   {{#each items as |item|}}
-    {{#accordion.item as |accordionItem|}}
-      {{#accordionItem.toggle}}
+    <accordion.item as |accordionItem|>
+      <accordionItem.toggle>
         <i class="fa fa-angle-right"></i>
         <span class='angle-right'>></span>
         {{item.name}}
-      {{/accordionItem.toggle}}
-      {{#accordionItem.panel openOnInit=true}}
+      </accordionItem.toggle>
+      <accordionItem.panel @openOnInit={{true}}>
         {{item.description}}
-      {{/accordionItem.panel}}
-    {{/accordion.item}}
+      </accordionItem.panel>
+    </accordion.item>
   {{/each}}
-{{/accordion-list}}
+</AccordionList>
 
 {{#code-block language='markup'}}
-&lt;!-- Set 'openOnInit=true' on the desired panel(s) --&gt;
+&lt;!-- Set '@openOnInit={{true}}' on the desired panel(s) --&gt;
 
 &lt;!-- ... --&gt;
-\{{#accordionItem.panel openOnInit=true}}
+&lt;accordionItem.panel @openOnInit={{true}}&gt;
   &lt;!-- ... --&gt;
-\{{/accordionItem.panel}}
+&lt;/accordionItem.panel&gt;
 &lt;!-- ... --&gt;
 {{/code-block}}

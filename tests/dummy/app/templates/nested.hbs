@@ -1,70 +1,70 @@
 <h3>Nested Accordion</h3>
 
-{{#accordion-list as |outerAccordion|}}
+<AccordionList as |outerAccordion|>
   {{#each items as |item|}}
-    {{#outerAccordion.item as |outerAccordionItem|}}
+    <outerAccordion.item as |outerAccordionItem|>
 
-      {{#outerAccordionItem.toggle}}
+      <outerAccordionItem.toggle>
         <span class='angle-right'>></span>
         {{item.name}}
-      {{/outerAccordionItem.toggle}}
+      </outerAccordionItem.toggle>
 
-      {{#outerAccordionItem.panel openOnInit=true}}
-        {{#accordion-list as |innerAccordion|}}
+      <outerAccordionItem.panel openOnInit=true>
+        <AccordionList as |innerAccordion|>
           {{#each item.children as |child|}}
-            {{#innerAccordion.item as |innerAccordionItem|}}
-              {{#innerAccordionItem.toggle}}
+            <innerAccordion.item as |innerAccordionItem|>
+              <innerAccordionItem.toggle>
                 <span class='angle-right'>></span>
                 {{child.name}}
-              {{/innerAccordionItem.toggle}}
-              {{#innerAccordionItem.panel}}
+              </innerAccordionItem.toggle>
+              <innerAccordionItem.panel>
                 {{child.value}}
-              {{/innerAccordionItem.panel}}
-            {{/innerAccordion.item}}
+              </innerAccordionItem.panel>
+            </innerAccordion.item>
           {{/each}}
-        {{/accordion-list}}
-      {{/outerAccordionItem.panel}}
+        </AccordionList>
+      </outerAccordionItem.panel>
 
-    {{/outerAccordion.item}}
+    </outerAccordion.item>
   {{/each}}
-{{/accordion-list}}
+</AccordionList>
 
 {{#code-block}}
 &lt;!-- The trick here is naming outer and inner accordions differently. --&gt;
 
 
 &lt;!-- Note 'outerAccordion' --&gt;
-\{{#accordion-list as |outerAccordion|}}
+&lt;AccordionList as |outerAccordion|&gt;
   \{{#each items as |item|}}
 
     &lt;!-- Note 'outerAccordionItem' --&gt;
-    \{{#outerAccordion.item as |outerAccordionItem|}}
-      \{{#outerAccordionItem.toggle}}
+    &lt;outerAccordion.item as |outerAccordionItem|&gt;
+      &lt;outerAccordionItem.toggle&gt;
         &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
         \{{item.name}}
-      \{{/outerAccordionItem.toggle}}
+      &lt;/outerAccordionItem.toggle&gt;
 
-      \{{#outerAccordionItem.panel}}
+      &lt;outerAccordionItem.panel&gt;
 
         &lt;!-- Note 'innerAccordion' --&gt;
-        \{{#accordion-list as |innerAccordion|}}
+        &lt;AccordionList as |innerAccordion|&gt;
           \{{#each item.children as |child|}}
 
             &lt;!-- Note 'innerAccordionItem' --&gt;
-            \{{#innerAccordion.item as |innerAccordionItem|}}
-              \{{#innerAccordionItem.toggle}}
+            &lt;innerAccordion.item as |innerAccordionItem|&gt;
+              &lt;innerAccordionItem.toggle&gt;
                 &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
                 \{{child.name}}
-              \{{/innerAccordionItem.toggle}}
-              \{{#innerAccordionItem.panel}}
+              &lt;/innerAccordionItem.toggle&gt;
+              &lt;innerAccordionItem.panel&gt;
                 \{{child.value}}
-              \{{/innerAccordionItem.panel}}
+              &lt;/innerAccordionItem.panel&gt;
 
-            \{{/innerAccordion.item}}
+            &lt;/innerAccordion.item&gt;
           \{{/each}}
-        \{{/accordion-list}}
-      \{{/outerAccordionItem.panel}}
-    \{{/outerAccordion.item}}
+        &lt;/AccordionList&gt;
+      &lt;/outerAccordionItem.panel&gt;
+    &lt;/outerAccordion.item&gt;
   \{{/each}}
-\{{/accordion-list}}
+&lt;/AccordionList&gt;
 {{/code-block}}
