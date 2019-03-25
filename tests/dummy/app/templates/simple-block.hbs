@@ -41,7 +41,7 @@ AccordionList<h3>Example Usage</h3>
 
 
 <h3>Open Many Panels at Once</h3>
-<AccordionList allowManyActiveItems=true as |accordion|>
+<AccordionList @allowManyActiveItems={{true}} as |accordion|>
   {{#if accordion.allExpanded}}
     <a href='#' {{action accordion.collapseAll}}>Collapse All</a>
   {{else}}
@@ -62,7 +62,7 @@ AccordionList<h3>Example Usage</h3>
 
 {{#code-block language='markup'}}
 &lt;!-- Follow example above, set 'allowManyActiveItems=true' --&gt;
-&lt;AccordionList @allowManyActiveItems={{true}} as |accordion|&gt;
+&lt;AccordionList @allowManyActiveItems=\{{true}} as |accordion|&gt;
   &lt;!-- ... --&gt;
 &lt;/AccordionList&gt;
 {{/code-block}}
@@ -84,10 +84,10 @@ AccordionList<h3>Example Usage</h3>
 </AccordionList>
 
 {{#code-block language='markup'}}
-&lt;!-- Set '@openOnInit={{true}}' on the desired panel(s) --&gt;
+&lt;!-- Set '@openOnInit=\{{true}}' on the desired panel(s) --&gt;
 
 &lt;!-- ... --&gt;
-&lt;accordionItem.panel @openOnInit={{true}}&gt;
+&lt;accordionItem.panel @openOnInit=\{{true}}&gt;
   &lt;!-- ... --&gt;
 &lt;/accordionItem.panel&gt;
 &lt;!-- ... --&gt;

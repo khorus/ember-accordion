@@ -9,40 +9,41 @@ The example below is a bit contrived but there are valid use cases where a user 
 close the panel
 </p>
 
-{{#accordion-list as |accordion|}}
+<AccordionList as |accordion|>
   {{#each items as |item|}}
-    {{#accordion.item as |accordionItem|}}
-      {{#accordionItem.toggle}}
+    <accordion.item as |accordionItem|>
+      <accordionItem.toggle>
         <span class='angle-right'>></span>
         {{item.name}}
-      {{/accordionItem.toggle}}
-      {{#accordionItem.panel}}
+      </accordionItem.toggle>
+      <accordionItem.panel>
         <p>{{item.value}}</p>
         <p>Update name: {{input value=newName}}</p>
         <button {{action (pipe (action 'updateName' item newName) (action accordionItem.close)) }}>Update Item</button>
-      {{/accordionItem.panel}}
-    {{/accordion.item}}
+      </accordionItem.panel>
+    </accordion.item>
   {{/each}}
-{{/accordion-list}}
+</AccordionList>
 
 {{#code-block }}
-\{{#accordion-list as |accordion|}}
+&lt;AccordionList as |accordion|&gt;
   \{{#each items as |item|}}
-    \{{#accordion.item as |accordionItem|}}
+    &lt;accordion.item as |accordionItem|&gt;
 
-      \{{#accordionItem.toggle}}
+      &lt;accordionItem.toggle&gt;
         &lt;i class="fa fa-angle-right"&gt;&lt;/i&gt;
         \{{item.name}}
-      \{{/accordionItem.toggle}}
-      \{{#accordionItem.panel}}
+      &lt;/accordionItem.toggle&gt;
+      &lt;accordionItem.panel&gt;
         \{{item.color}}
-        &lt;p&gt;{{item.value}}&lt;/p&gt;
+        &lt;p&gt;\{{item.value}}&lt;/p&gt;
         &lt;p&gt;Update name: \{{input value=newName}}&lt;/p&gt;
         &lt;button \{{action (pipe (action 'updateName' item newName) (action accordionItem.close) }}&gt;
           Update Item
         &lt;/button&gt;
-      \{{/accordionItem.panel}}
+      &lt;/accordionItem.panel&gt;
 
-    \{{/accordion.item}}
+    &lt;/accordion.item&gt;
   \{{/each}}
-\{{/accordion-list}}{{/code-block}}
+&lt;/AccordionList&gt;
+{{/code-block}}
