@@ -1,74 +1,74 @@
 <div class='MultiplePanelsPage'>
   <h3>Multiple Panels per Item</h3>
 
-  {{#accordion-list as |accordion|}}
-    {{#accordion.item as |accordionItem|}}
+  <AccordionList as |accordion|>
+    <accordion.item as |accordionItem|>
       <h4>
         Accordion Item with two panels
         <div class="AccordionItem-toggles">
-          {{#accordionItem.toggle panelName="comments" as |isActive|}}
+          <accordionItem.toggle @panelName="comments" as |isActive|>
             comments
-          {{/accordionItem.toggle}}
-          {{#accordionItem.toggle panelName="info" as |isActive|}}
+          </accordionItem.toggle>
+          <accordionItem.toggle @panelName="info" as |isActive|>
             info
-          {{/accordionItem.toggle}}
+          </accordionItem.toggle>
         </div>
       </h4>
 
-      {{#accordionItem.panel panelName="comments"}}
+      <accordionItem.panel @panelName="comments">
         Here are some comments... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elementum odio, sit amet feugiat risus. Integer venenatis eget quam a scelerisque. Nulla tincidunt tellus at maximus iaculis. Nulla a risus sed augue consectetur vehicula. Nunc lorem dolor, consectetur sed turpis eu, aliquam interdum velit. Aenean sit amet orci ut purus varius consequat. Morbi feugiat, ligula vel vehicula mattis, turpis nisl bibendum velit, vitae efficitur sapien nisi at ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
-      {{/accordionItem.panel}}
-      {{#accordionItem.panel panelName="info"}}
+      </accordionItem.panel>
+      <accordionItem.panel @panelName="info">
         Here is some info
-      {{/accordionItem.panel}}
+      </accordionItem.panel>
 
-    {{/accordion.item}}
+    </accordion.item>
 
-    {{#accordion.item as |accordionItem|}}
+    <accordion.item as |accordionItem|>
       <h4>
         Accordion item with comments panel
         <div class="AccordionItem-toggles">
-          {{#accordionItem.toggle as |isActive|}}
+          <accordionItem.toggle as |isActive|>
             comments
-          {{/accordionItem.toggle}}
+          </accordionItem.toggle>
         </div>
       </h4>
 
-      {{#accordionItem.panel}}
+      <accordionItem.panel>
         Here are comments about the other thing.... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elementum odio, sit amet feugiat risus. Integer venenatis eget quam a scelerisque. Nulla tincidunt tellus at maximus iaculis. Nulla a risus sed augue consectetur vehicula. Nunc lorem dolor, consectetur sed turpis eu, aliquam interdum velit. Aenean sit amet orci ut purus varius consequat. Morbi feugiat, ligula vel vehicula mattis, turpis nisl bibendum velit, vitae efficitur sapien nisi at ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin
-      {{/accordionItem.panel}}
+      </accordionItem.panel>
 
-    {{/accordion.item}}
-  {{/accordion-list}}
+    </accordion.item>
+  </AccordionList>
 </div>
 
 {{#code-block language='markup'}}
 &lt;!-- To enable more than one toggle/panel pair for an item, use the 'panelName' property. --&gt;
 &lt;!-- The 'panelName' should be set to the same value for each toggle/panel pair. --&gt;
 
-\{{#accordion-list as |accordion|}}
-  \{{#accordion.item as |accordionItem|}}
+&lt;AccordionList as |accordion|&gt;
+  &lt;accordion.item as |accordionItem|&gt;
     &lt;h4&gt;
       Accordion Item with two panels
       &lt;div class="AccordionItem-toggles"&gt;
-        \{{#accordionItem.toggle panelName="comments" as |isActive|}}
+        &lt;accordionItem.toggle @panelName="comments" as |isActive|&gt;
           &lt;!-- ... --&gt;
-        \{{/accordionItem.toggle}}
-        \{{#accordionItem.toggle panelName="info" as |isActive|}}
+        &lt;/accordionItem.toggle&gt;
+        &lt;accordionItem.toggle @panelName="info" as |isActive|&gt;
           &lt;!-- ... --&gt;
-        \{{/accordionItem.toggle}}
+        &lt;/accordionItem.toggle&gt;
       &lt;/div&gt;
     &lt;/h4&gt;
 
-    \{{#accordionItem.panel panelName="comments"}}
+    &lt;accordionItem.panel @panelName="comments"&gt;
       Here are some comments...
-    \{{/accordionItem.panel}}
-    \{{#accordionItem.panel panelName="info"}}
+    &lt;/accordionItem.panel&gt;
+    &lt;accordionItem.panel @panelName="info"&gt;
       Here is some info
-    \{{/accordionItem.panel}}
+    &lt;/accordionItem.panel&gt;
 
-  \{{/accordion.item}}
-\{{/accordion-list}}
+  &lt;/accordion.item&gt;
+&lt;/AccordionList&gt;
 {{/code-block}}
 
 
@@ -76,11 +76,11 @@
 &lt;!-- This example also highlights the yielded 'isActive' proprty of toggle which allows for --&gt;
 &lt;!-- customizing the toggle based on active state. --&gt;
 
-\{{#accordionItem.toggle panelName="comments" as |isActive|}}
+&lt;accordionItem.toggle @panelName="comments" as |isActive|&gt;
   \{{#if isActive}}
     &lt;i class="fa fa-comment"&gt;&lt;/i&gt;
   \{{else}}
     &lt;i class="fa fa-comment-o"&gt;&lt;/i&gt;
   \{{/if}}
-\{{/accordionItem.toggle}}
+&lt;/accordionItem.toggle&gt;
 {{/code-block}}
