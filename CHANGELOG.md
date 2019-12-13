@@ -1,14 +1,14 @@
 # Upcoming (0.6.0)
 
-- Update circle config settings
-- Remove the internal use of positional params. These params were not intended to
+- [Feature] yield a hash with open, close, and toggle actions from the toggle component [#16](https://github.com/khorus/ember-accordion/issues/16)
+- [Chore] Update circle config settings
+- [Chore] Remove the internal use of positional params. These params were not intended to
   be part of the public interface so this should be a non-breaking change for most
   users.
 
 ## Breaking Changes
 
 - Drop support for Ember versions < 2.18
-
 
 # 0.5.0
 
