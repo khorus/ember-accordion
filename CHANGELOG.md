@@ -1,6 +1,9 @@
 # Upcoming (0.6.0)
 
 - Update circle config settings
+- Remove the internal use of positional params. These params were not intended to
+  be part of the public interface so this should be a non-breaking change for most
+  users.
 
 ## Breaking Changes
 
