@@ -1,7 +1,8 @@
 import { module, test, skip } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, find, findAll, render } from "@ember/test-helpers";
-import hbs from "htmlbars-inline-precompile";
+import { hbs } from "ember-cli-htmlbars";
+
 
 module("Integration | Component | accordion list", function(hooks) {
   setupRenderingTest(hooks);
@@ -315,6 +316,7 @@ module("Integration | Component | accordion list", function(hooks) {
       find(".AccordionPanel").textContent.match(/inner panel 1/),
       "after reopening outer panel 1, inner panel 1 should not be active"
     );
+
   });
 
   // Causes Ember 2.18 and 3.0 to fail

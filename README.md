@@ -9,6 +9,10 @@ A set of ember accordion components that makes 'fancy' accordions easy.
 
 Documentation can be found [here](http://khorus.github.io/ember-accordion).
 
+* For Ember.js version support see below
+* Ember CLI v2.13 or above
+* Node.js v8 or above
+
 The ember-accordion documentation is an ember-cli app running from
 ember-accordion's [dummy test
 app](https://github.com/khorus/ember-accordion/tree/master/tests/dummy/app).

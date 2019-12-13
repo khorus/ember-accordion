@@ -1,3 +1,11 @@
+# Upcoming (0.7.0)
+
+- Upgrade to Ember 3.14
+
+## Breaking Changes
+
+- Drop Node 6 support
+
 # 0.6.0
 
 - [Feature] yield a hash with open, close, and toggle actions from the toggle component [#16](https://github.com/khorus/ember-accordion/issues/16)
