@@ -1,3 +1,12 @@
+# Upcoming (0.6.0)
+
+- Update circle config settings
+
+## Breaking Changes
+
+- Drop support for Ember versions < 2.18
+
+
 # 0.5.0
 
 This is probably the last release before a 1.0.
