@@ -4,10 +4,12 @@
 - Remove the internal use of positional params. These params were not intended to
   be part of the public interface so this should be a non-breaking change for most
   users.
+- Upgrade to Ember 3.14
 
 ## Breaking Changes
 
 - Drop support for Ember versions < 2.18
+- Drop Node 6 support
 
 
 # 0.5.0
