@@ -177,9 +177,9 @@ workflows:
       - install_dependencies:
           requires:
             - checkout_code
-      - lint:
-          requires:
-            - install_dependencies
+      #- lint:
+      #    requires:
+      #      - install_dependencies
       - test_lts_2_18:
           requires:
             - install_dependencies
