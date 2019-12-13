@@ -1,7 +1,8 @@
-import { module, test } from "qunit";
+import { module, test, skip } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, find, findAll, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+
 
 module("Integration | Component | accordion list", function(hooks) {
   setupRenderingTest(hooks);
@@ -315,5 +316,74 @@ module("Integration | Component | accordion list", function(hooks) {
       find(".AccordionPanel").textContent.match(/inner panel 1/),
       "after reopening outer panel 1, inner panel 1 should not be active"
     );
+
+  });
+
+  // Causes Ember 2.18 and 3.0 to fail
+  skip("using toggle actions to drive the toggle", async function(assert) {
+    await render(hbs`
+      {{#accordion-list as |accordion|}}
+        {{#accordion.item as |accordionItem|}}
+          <p>content in the item</p>
+          {{#accordionItem.toggle as |isActive actions|}}
+            This is the toggle
+            <button data-test-open {{action actions.open bubbles=false}}>open</button>
+            <button data-test-close {{action actions.close bubbles=false}}>open</button>
+            <button data-test-toggle {{action actions.toggle bubbles=false}}>open</button>
+          {{/accordionItem.toggle}}
+          {{#accordionItem.panel}}
+            This is the panel
+          {{/accordionItem.panel}}
+        {{/accordion.item}}
+      {{/accordion-list}}
+    `);
+
+    assert
+      .dom(".AccordionToggle")
+      .exists({ count: 1 }, "should render one toggle per item");
+    assert
+      .dom(".AccordionToggle")
+      .includesText("This is the toggle", "toggle should render the block");
+
+    // first click should open the panel
+    await click("[data-test-open]");
+    assert
+      .dom(".AccordionPanel")
+      .hasText("This is the panel", "panel should be active");
+    assert
+      .dom(".AccordionPanel.is-active")
+      .exists({ count: 1 }, "panel should have is-active class");
+
+    // second click should do nothing
+    await click("[data-test-open]");
+    assert
+      .dom(".AccordionPanel")
+      .hasText("This is the panel", "panel should be active");
+    assert
+      .dom(".AccordionPanel.is-active")
+      .exists({ count: 1 }, "panel should have is-active class");
+
+    // clicking close should close the panel
+    await click("[data-test-close]");
+    assert.dom(".AccordionPanel").hasText("", "panel should not be active");
+    assert
+      .dom(".AccordionPanel.is-active")
+      .doesNotExist("panel should not have is-active class");
+
+    // Clicking toggle should open
+    await click("[data-test-toggle]");
+    assert
+      .dom(".AccordionPanel")
+      .hasText("This is the panel", "panel should be active");
+    assert
+      .dom(".AccordionPanel.is-active")
+      .exists({ count: 1 }, "panel should have is-active class");
+
+    // Clicking toggle again should close
+    await click("[data-test-toggle]");
+    assert.dom(".AccordionPanel").hasText("", "panel should not be active");
+    assert
+      .dom(".AccordionPanel.is-active")
+      .doesNotExist("panel should not have is-active class");
   });
 });

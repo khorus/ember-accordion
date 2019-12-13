@@ -21,5 +21,21 @@ export default Component.extend({
       this.get("toggle")(this.get("panelName"));
     }
     return false;
+  },
+
+  actions: {
+    openItem() {
+      if (!this.isActive) {
+        this.get("toggle")(this.get("panelName"));
+      }
+    },
+    closeItem() {
+      if (this.isActive) {
+        this.get("toggle")(this.get("panelName"));
+      }
+    },
+    toggleItem() {
+      this.get("toggle")(this.get("panelName"));
+    }
   }
 });

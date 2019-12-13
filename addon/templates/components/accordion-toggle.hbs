@@ -1,1 +1,8 @@
-{{yield isActive}}
+{{yield
+  isActive
+  (hash
+    open=(action 'openItem')
+    close=(action 'closeItem')
+    toggle=(action 'toggleItem')
+  )
+}}
