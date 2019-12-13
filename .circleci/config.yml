@@ -69,36 +69,6 @@ jobs:
           name: Run Tests
           command: ember try:one ember-lts-3.0 --skip-cleanup=true
 
-  test_3_1:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: echo 'export PATH=~/repo/node_modules/.bin:$PATH' >> $BASH_ENV
-      - run:
-          name: Run Tests
-          command: ember try:one ember-3.1 --skip-cleanup=true
-
-  test_3_2:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: echo 'export PATH=~/repo/node_modules/.bin:$PATH' >> $BASH_ENV
-      - run:
-          name: Run Tests
-          command: ember try:one ember-3.2 --skip-cleanup=true
-
-  test_3_3:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: echo 'export PATH=~/repo/node_modules/.bin:$PATH' >> $BASH_ENV
-      - run:
-          name: Run Tests
-          command: ember try:one ember-3.3 --skip-cleanup=true
-
   test_lts_3_4:
     <<: *defaults
     steps:
@@ -184,15 +154,6 @@ workflows:
           requires:
             - install_dependencies
       - test_lts_3_0:
-          requires:
-            - install_dependencies
-      - test_3_1:
-          requires:
-            - install_dependencies
-      - test_3_2:
-          requires:
-            - install_dependencies
-      - test_3_3:
           requires:
             - install_dependencies
       - test_lts_3_4:
