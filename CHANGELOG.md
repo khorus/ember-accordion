@@ -1,4 +1,4 @@
-# Upcoming (0.6.0)
+# 0.6.0
 
 - [Feature] yield a hash with open, close, and toggle actions from the toggle component [#16](https://github.com/khorus/ember-accordion/issues/16)
 - [Chore] Update circle config settings
