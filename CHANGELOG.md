@@ -1,6 +1,7 @@
-# Upcoming (0.7.0)
+# 0.7.0
 
 - Upgrade to Ember 3.14
+- Upgrade other dependencies
 
 ## Breaking Changes
 
