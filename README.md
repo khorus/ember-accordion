@@ -1,6 +1,7 @@
 # Ember Accordion
 
 [![Circle CI](https://circleci.com/gh/khorus/ember-accordion.svg?style=svg)](https://circleci.com/gh/khorus/ember-accordion)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-accordion.svg)](https://emberobserver.com/addons/ember-accordion)
 
 A set of ember accordion components that makes 'fancy' accordions easy.
 
@@ -16,25 +17,16 @@ app](https://github.com/khorus/ember-accordion/tree/master/tests/dummy/app).
 
 Install the ember-cli addon in your ember-cli project:
 
-## For Ember >= 2.4
+## For Ember >= 2.18
 
 ```
 $ ember install ember-accordion
 ```
 
-## For Ember 2.0-2.3
-
-Use version 0.3.6 but note that the blockess form of
-`component:ember-accordion` will not work.
+## For Ember 2.4-2.17
 
 ```
-$ ember install ember-accordion@0.3.6
-```
-
-## For Ember 1.13
-
-```
-$ ember install ember-accordion@0.3.6
+$ ember install ember-accordion@0.5
 ```
 
 # Upgrades
