@@ -35,7 +35,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-merge-trees": "^2.0.0",
     "broccoli-static-compiler": "^0.2.2",
-    "ember-angle-bracket-invocation-polyfill": "^2.0.2",
+    "ember-angle-bracket-invocation-polyfill": "^3.0.1",
     "ember-auto-import": "^1.5.2",
     "ember-bootstrap": "^3.1.0",
     "ember-cli": "~3.14.0",
